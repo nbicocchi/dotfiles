@@ -3,45 +3,36 @@
 pkglist="micro
 barrier
 btop
+htop
 man-db
 bat
 ncdu
+dust
 duf
+dua-cli
+trash-cli
 lazygit
 ranger
 ripgrep
 neovim
+neofetch
 xsel
 fd
-exa
+lsd
 ncdu
-fzf
 iotop
 stress
-conky
-plank
-cpupower
-expac
-baobab
-gparted
-kvantum-qt5
-qt5ct
-syncthing
 dfc
 snapper
-arch-install-scripts
-byobu
 zoxide
 diskus
-dust
-dua-cli
-trash-cli
-asp
 tailscale
 exfatprogs
-stress
 "
 
 echo -e "$pkglist" > pkglist
 sudo pacman -S --noconfirm --needed - < pkglist
 rm -rf pkglist
+
+
+
