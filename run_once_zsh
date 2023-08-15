@@ -1,5 +1,14 @@
 #!/bin/bash
 
-yay -S zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting zsh-completions starship fzf find-the-command-git --needed --noconfirm
-touch ~/.histfile
-chsh -s /bin/zsh
+pkglist="zsh 
+zsh-autosuggestions 
+zsh-history-substring-search 
+zsh-syntax-highlighting 
+zsh-completions  
+starship
+fzf 
+"
+
+echo -e "$pkglist" > pkglist
+sudo pacman -S --noconfirm --needed - < pkglist
+rm -rf pkglist

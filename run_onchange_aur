@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pkglist_aur=""
+
+echo -e "$pkglist_aur" > pkglist_aur
+yay -S --noconfirm --needed - < pkglist_aur
+rm -rf pkglist_aur

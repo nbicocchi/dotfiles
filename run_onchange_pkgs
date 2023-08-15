@@ -44,4 +44,4 @@ stress
 
 echo -e "$pkglist" > pkglist
 sudo pacman -S --noconfirm --needed - < pkglist
-rm -rf pkglist pkglist
+rm -rf pkglist
