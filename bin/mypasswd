@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Requirements
+# On Linux (requires gnupg xclip)
+# On Mac (requires gnupg pbcopy)
+
+# Configuration
+RECIPIENT="nicola.bicocchi@gmail.com"
+STORAGE_ENC="/run/user/1000/gvfs/google-drive:host=unimore.it,user=nbicocchi/0AM-alrhdq_d4Uk9PVA/0B8-alrhdq_d4MDJuVWs4NlVGMnM/1WgF9Hw3hx50XzhORJhRZmETYV1067uPB"
+PASSWORD_LENGTH=8
+
+# Functions
+init() {
+  case "$(uname -s)" in
+    Linux*) 
+      which gpg >/dev/null 2>&1 || exit_with_msg "unable to find gpg. please install." 
+      which xclip >/dev/null 2>&1 || exit_with_msg "unable to find xclip. please install." 
+      TOCLIPBOARD="xclip -selection clipboard"
+      STORAGE_DEC="$HOME"/$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32) 
+      ;;
+  
+    Darwin*)
+      which gpg >/dev/null 2>&1 || exit_with_msg "unable to find gpg. please install." 
+      which pbcopy >/dev/null 2>&1 || exit_with_msg "unable to find pbcopy. please install." 
+      TOCLIPBOARD="pbcopy"
+      STORAGE_DEC="$HOME"/$(cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c 32)
+      ;;
+    *)  
+      exit_with_msg "Unsupported architecture"
+    ;;
+  esac
+}
+
+exit_with_msg () {
+  echo "$1" 
+  exit 1
+}
+
+# Main
+init 
+gpg --list-secret-keys | grep "$RECIPIENT" > /dev/null 2>&1 || exit_with_msg "Missing keys for "$RECIPIENT". Import with gpg --import keys"
+test $# -eq 1 || exit_with_msg "usage: $0 all|sitename|generate|edit"
+			  
+case "$1" in
+	"edit")
+    gpg --decrypt "$STORAGE_ENC" > "$STORAGE_DEC"
+    "$EDITOR" "$STORAGE_DEC"
+    gpg --encrypt --recipient "$RECIPIENT" --output "$STORAGE_ENC" "$STORAGE_DEC"
+    rm -rfP "$STORAGE_DEC" >/dev/null 2>&1 
+    ;;
+  "generate") 
+    password=$(openssl rand -base64 "$PASSWORD_LENGTH") 
+    echo "$password" 
+    echo "$password" | $TOCLIPBOARD
+    ;;
+  "all") 
+    gpg --decrypt "$STORAGE_ENC"
+    ;;
+  *)
+    content=$(gpg --decrypt "$STORAGE_ENC")
+    echo "$content" | grep -A 2 '^#.*'$1
+    echo "$content" | grep -A 2 '^#.*'$1 | tail -n 1 | $TOCLIPBOARD
+    ;;
+esac 
+
+exit 0

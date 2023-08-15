@@ -1,0 +1,47 @@
+#!/bin/bash
+
+pkglist="micro
+barrier
+btop
+man-db
+bat
+ncdu
+duf
+lazygit
+ranger
+ripgrep
+neovim
+xsel
+fd
+exa
+ncdu
+fzf
+iotop
+stress
+conky
+plank
+cpupower
+expac
+baobab
+gparted
+kvantum-qt5
+qt5ct
+syncthing
+dfc
+snapper
+arch-install-scripts
+byobu
+zoxide
+diskus
+dust
+dua-cli
+trash-cli
+asp
+tailscale
+exfatprogs
+stress
+"
+
+echo -e "$pkglist" > pkglist
+sudo pacman -S --noconfirm --needed - < pkglist
+rm -rf pkglist pkglist
