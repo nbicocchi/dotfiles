@@ -1,12 +1,12 @@
 #!/bin/bash
 
-pkglist="zsh 
-zsh-autosuggestions 
-zsh-history-substring-search 
-zsh-syntax-highlighting 
-zsh-completions  
+pkglist="zsh
+zsh-autosuggestions
+zsh-history-substring-search
+zsh-syntax-highlighting
+zsh-completions
 starship
-fzf 
+fzf
 "
 
 echo -e "$pkglist" > pkglist
