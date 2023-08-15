@@ -1,0 +1,5 @@
+[user]
+	email = nbicocchi@unimore.it
+	name = Nicola Bicocchi
+[credential]
+	helper = store
