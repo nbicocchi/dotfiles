@@ -33,6 +33,7 @@ dconf-editor
 papirus-icon-theme
 ttf-fira-code
 ttf-roboto
+code
 "
 echo -e "$pkglist" > pkglist
 sudo pacman -S --noconfirm --needed - < pkglist
