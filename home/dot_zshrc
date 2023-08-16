@@ -23,7 +23,7 @@ eval "$(zoxide init zsh)"
 [ -e /usr/share/doc/find-the-command/ftc.zsh ] && source /usr/share/doc/find-the-command/ftc.zsh
 
 # Load aliases
-[ -e ~/.zsh_aliases] && source ~/.zsh_aliases
+[ -e ~/.zsh_aliases ] && source ~/.zsh_aliases
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
