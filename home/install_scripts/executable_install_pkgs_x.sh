@@ -1,6 +1,7 @@
 #!/bin/bash
 
 pkglist="conky
+rofi
 plank
 celluloid
 font-manager
