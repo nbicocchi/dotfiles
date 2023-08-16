@@ -28,14 +28,6 @@ alias ssu-start="systemctl --user start"
 alias ssu-stop="systemctl --user stop"
 alias ssy-st="systemctl --user status"
 
-alias jc-vt="sudo journalctl --vacuum-time=4weeks"
-alias jc-vs="sudo journalctl --vacuum-size=250M"
-alias jc="journalctl"
-
-alias rmpkg="rm -rf pkg src"
-alias rmrf="rm -rf"
-alias srmrf="sudo rm -rf"
-
 alias yay-db="yay -Y --gendb"
 alias yay-dev="yay -Syu --devel"
 alias yayrm="yay -Rs" 
@@ -49,10 +41,6 @@ alias drop-caches-paru='sudo paccache -rk3 && sudo paccache -ruk0 && paru -Sc --
 alias rmorph='sudo pacman -Rns $(pacman -Qtdq)'  
 alias pacsize="expac -H M '%m\t%n' | sort -h"
 alias pacview="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
-
-alias um-vpn="openconnect-sso -p ~/Documents/anyconnect-linux/Profiles/vpn/UMVPN-2.xml"
-alias um-vpn-64="/opt/cisco/anyconnect/bin/vpn connect umvpn.umnet.umich.edu/umvpn-split-tunnel-alt"
-alias um-vpn-64-dis="/opt/cisco/anyconnect/bin/vpn disconnect"
 
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist" 
 alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist" 
