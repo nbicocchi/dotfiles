@@ -1,7 +1,16 @@
 #!/bin/bash
 
-#pkglist=""
+pkglist="com.google.Chrome
+com.google.EarthPro
+io.github.TheWisker.Cavasik
+de.haeckerfelix.Shortwave
+com.valvesoftware.Steam
+com.github.hugolabe.Wike
+com.github.rafostar.Clapper
+io.missioncenter.MissionCenter
+com.sublimetext.three
+"
 
-#echo -e "$pkglist" > pkglist
-#yay -S --noconfirm --needed - < pkglist
-#rm -rf pkglist
+for pkg in $pkglist; do
+  flatpak install --system --noninteractive --assumeyes flathub "$pkg"
+done

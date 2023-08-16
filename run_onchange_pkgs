@@ -1,6 +1,14 @@
 #!/bin/bash
 
-pkglist="micro
+pkglist="base-devel
+git
+gnupg
+openssh
+net-tools
+curl
+wget
+mc
+micro
 barrier
 btop
 htop
@@ -16,6 +24,7 @@ ranger
 ripgrep
 neovim
 neofetch
+xclip
 xsel
 fd
 lsd
@@ -28,6 +37,7 @@ zoxide
 diskus
 tailscale
 exfatprogs
+flatpak
 "
 
 echo -e "$pkglist" > pkglist
