@@ -30,6 +30,8 @@ gnome-sound-recorder
 gnome-software
 dconf-editor
 papirus-icon-theme
+ttf-fira-code
+ttf-roboto
 "
 echo -e "$pkglist" > pkglist
 sudo pacman -S --noconfirm --needed - < pkglist
