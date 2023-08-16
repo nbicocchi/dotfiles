@@ -12,3 +12,5 @@ fzf
 echo -e "$pkglist" > pkglist
 sudo pacman -S --noconfirm --needed - < pkglist
 rm -rf pkglist
+
+sudo chsh -s /bin/zsh
