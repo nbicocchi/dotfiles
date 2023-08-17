@@ -15,14 +15,14 @@ install_pandoc_pkgs() {
 
 install_base_cli_pkgs() {
   pkgs="base-devel git gnupg openssh net-tools curl wget mc micro
-    barrier btop htop man-db bat ncdu dust duf dua-cli trash-cli lazygit ranger
-    ripgrep neovim neofetch xclip xsel fd lsd ncdu iotop stress dfc snapper 
-    zoxide diskus tailscale exfatprogs ctags flatpak"
+    barrier btop htop man-db bat bat-extras duf dua-cli trash-cli 
+    lazygit ranger ripgrep neovim neofetch xclip xsel fd lsd iotop stress 
+    dfc snapper zoxide exfatprogs ctags flatpak"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_base_gui_pkgs() {
-  pkgs="conky rofi plank celluloid font-manager gedit geary gthumb eog evince
+  pkgs="conky rofi plank vlc celluloid font-manager gedit geary gthumb eog evince
     inkscape seahorse transmission-gtk lollypop filezilla vlc foliate handbrake
     xournalpp gnome-weather gnome-system-monitor gnome-calculator gnome-disk-utility 
     gnome-tweaks gnome-browser-connector gnome-shell-extensions gnome-contacts 
@@ -39,7 +39,7 @@ install_aur_pkgs() {
 install_flatpak_pkgs() {
   pkgs="com.google.Chrome com.google.EarthPro io.github.TheWisker.Cavasik
     de.haeckerfelix.Shortwave com.valvesoftware.Steam com.github.hugolabe.Wike
-    com.github.rafostar.Clapper io.missioncenter.MissionCenter com.sublimetext.three"
+    io.missioncenter.MissionCenter"
   for pkg in $pkgs; do
     echo "Installing" "$pkg"...
     flatpak install --system --noninteractive --assumeyes flathub "$pkg" 
