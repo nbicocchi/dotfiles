@@ -17,7 +17,7 @@ install_base_cli_pkgs() {
   pkgs="base-devel git gnupg openssh net-tools curl wget mc micro
     barrier btop htop man-db bat ncdu dust duf dua-cli trash-cli lazygit ranger
     ripgrep neovim neofetch xclip xsel fd lsd ncdu iotop stress dfc snapper 
-    zoxide diskus tailscale exfatprogs flatpak"
+    zoxide diskus tailscale exfatprogs ctags flatpak"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
