@@ -27,13 +27,13 @@ install_base_gui_pkgs() {
     xournalpp gnome-weather gnome-system-monitor gnome-calculator gnome-disk-utility 
     gnome-tweaks gnome-browser-connector gnome-shell-extensions gnome-contacts 
     gnome-sound-recorder gnome-software dconf-editor papirus-icon-theme
-    ttf-fira-code ttf-roboto code"
+    ttf-fira-code ttf-roboto"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_aur_pkgs() {
-  pkgs=""
-  sudo pacman -S --noconfirm --needed $pkgs
+  pkgs="visual-studio-code-bin"
+  yay --noconfirm $pkgs
 }
 
 install_flatpak_pkgs() {

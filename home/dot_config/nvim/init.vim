@@ -30,25 +30,15 @@ call plug#end()
 :let ayucolor="light"
 :colorscheme ayu
 
-let g:NERDTreeDirArrowExpandable="+"
-let g:NERDTreeDirArrowCollapsible="~"
+:let g:NERDTreeDirArrowExpandable="+"
+:let g:NERDTreeDirArrowCollapsible="~"
 
-
-
-"nnoremap <C-f> :NERDTreeFocus<CR>
-"nnoremap <C-f> :NERDTree<CR>
-nnoremap <C-f> :NERDTreeToggle<CR>
-nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-
-nmap <F8> :TagbarToggle<CR>
+:nnoremap <C-f> :NERDTreeToggle<CR>
+:nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
+:nnoremap <C-Left> :tabprevious<CR>
+:nnoremap <C-Right> :tabnext<CR>
+:nmap <F8> :TagbarToggle<CR>
 
 " --- Just Some Notes ---
 " :PlugClean :PlugInstall :UpdateRemotePlugins
-"
-" :CocInstall coc-python
-" :CocInstall coc-clangd
-" :CocInstall coc-snippets
-" :CocCommand snippets.edit... FOR EACH FILE TYPE
 
