@@ -14,7 +14,7 @@ install_pandoc_pkgs() {
 }
 
 install_base_cli_pkgs() {
-  pkgs="base-devel git gnupg openssh net-tools curl wget mc micro
+  pkgs="base-devel gdb git gnupg openssh net-tools curl wget mc micro
     barrier btop htop man-db bat bat-extras duf dua-cli trash-cli 
     lazygit ranger ripgrep neovim neofetch xclip xsel fd lsd iotop stress 
     dfc snapper zoxide exfatprogs ctags flatpak"
