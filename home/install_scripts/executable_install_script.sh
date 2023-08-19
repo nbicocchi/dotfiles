@@ -2,7 +2,7 @@
 
 install_zsh_pkgs() {
   pkgs="zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
-    zsh-completions starship fzf"
+    zsh-completions"
   sudo pacman -S --noconfirm --needed $pkgs
   chsh -s /bin/zsh
 }
@@ -17,7 +17,7 @@ install_base_cli_pkgs() {
   pkgs="base-devel gdb git gnupg openssh net-tools curl wget mc micro
     barrier btop htop man-db bat bat-extras duf dua-cli trash-cli 
     lazygit ranger ripgrep neovim neofetch xclip xsel fd lsd iotop stress 
-    dfc snapper zoxide exfatprogs ctags flatpak"
+    dfc snapper zoxide exfatprogs ctags flatpak starship fzf"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
