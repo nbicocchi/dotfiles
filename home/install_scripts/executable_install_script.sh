@@ -15,7 +15,7 @@ install_pandoc_pkgs() {
 
 install_base_cli_pkgs() {
   pkgs="base-devel gdb git gnupg openssh net-tools curl wget mc micro
-    barrier btop htop man-db bat bat-extras duf dua-cli trash-cli 
+    barrier btop htop chezmoi man-db bat bat-extras duf dua-cli trash-cli 
     lazygit ranger ripgrep neovim neofetch xclip xsel fd lsd iotop stress 
     dfc snapper zoxide exfatprogs ctags flatpak starship fzf"
   sudo pacman -S --noconfirm --needed $pkgs
@@ -26,8 +26,9 @@ install_base_gui_pkgs() {
     inkscape seahorse transmission-gtk lollypop filezilla vlc foliate handbrake
     xournalpp gnome-weather gnome-system-monitor gnome-calculator gnome-disk-utility 
     gnome-tweaks gnome-browser-connector gnome-shell-extensions gnome-contacts 
-    gnome-sound-recorder gnome-software dconf-editor papirus-icon-theme
-    ttf-fira-code ttf-roboto"
+    gnome-sound-recorder gnome-software gnome-online-accounts gnome-themes-extra
+    gtk-engine-murrine sassc dconf-editor 
+    papirus-icon-theme ttf-fira-code  ttf-roboto ttf-firacode-nerd ttf-roboto-mono-nerd"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
