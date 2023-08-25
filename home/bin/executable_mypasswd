@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Requirements
-# On Linux (requires gnupg xclip)
-# On Mac (requires gnupg pbcopy)
+# On Linux (requires gnupg xclip mktemp)
+# On Mac (requires gnupg pbcopy mktemp)
 
 # Configuration
 RECIPIENT="nicola.bicocchi@gmail.com"
@@ -14,16 +14,16 @@ init() {
   case "$(uname -s)" in
     Linux*) 
       which gpg >/dev/null 2>&1 || exit_with_msg "unable to find gpg. please install." 
-      which xclip >/dev/null 2>&1 || exit_with_msg "unable to find xclip. please install." 
+      which xclip >/dev/null 2>&1 || exit_with_msg "unable to find xclip. please install."
+      which mktemp >/dev/null 2>&1 || exit_with_msg "unable to find mktemp. please install." 
       TOCLIPBOARD="xclip -selection clipboard"
-      STORAGE_DEC="$HOME"/$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32) 
       ;;
   
     Darwin*)
       which gpg >/dev/null 2>&1 || exit_with_msg "unable to find gpg. please install." 
       which pbcopy >/dev/null 2>&1 || exit_with_msg "unable to find pbcopy. please install." 
+      which mktemp >/dev/null 2>&1 || exit_with_msg "unable to find mktemp. please install."
       TOCLIPBOARD="pbcopy"
-      STORAGE_DEC="$HOME"/$(cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c 32)
       ;;
     *)  
       exit_with_msg "Unsupported architecture"
@@ -42,11 +42,12 @@ gpg --list-secret-keys | grep "$RECIPIENT" > /dev/null 2>&1 || exit_with_msg "Mi
 test $# -eq 1 || exit_with_msg "usage: $0 all|sitename|generate|edit"
 			  
 case "$1" in
-	"edit")
+  "edit")
+    STORAGE_DEC="$(mktemp)"
     gpg --decrypt "$STORAGE_ENC" > "$STORAGE_DEC"
     "$EDITOR" "$STORAGE_DEC"
     gpg --encrypt --recipient "$RECIPIENT" --output "$STORAGE_ENC" "$STORAGE_DEC"
-    rm -rfP "$STORAGE_DEC" >/dev/null 2>&1 
+    rm -rfP "$STORAGE_DEC" >/dev/null 2>&1
     ;;
   "generate") 
     password=$(openssl rand -base64 "$PASSWORD_LENGTH") 
