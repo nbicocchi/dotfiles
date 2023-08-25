@@ -24,7 +24,7 @@ install_base_cli_pkgs() {
 install_base_gui_pkgs() {
   pkgs="conky rofi plank vlc celluloid font-manager geary gthumb eog evince
     inkscape seahorse transmission-gtk lollypop filezilla vlc foliate handbrake
-    xournalpp gnome-calculator gnome-weather gnome-system-monitor gnome-disk-utility 
+    xournalpp baobab gnome-calculator gnome-weather gnome-system-monitor gnome-disk-utility 
     gnome-tweaks gnome-browser-connector gnome-contacts gnome-sound-recorder 
     gnome-software gnome-online-accounts gnome-themes-extra gnome-calendar 
     gtk-engine-murrine sassc dconf-editor kitty gvfs-goa gvfs-google
