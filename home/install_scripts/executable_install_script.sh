@@ -22,13 +22,13 @@ install_base_cli_pkgs() {
 }
 
 install_base_gui_pkgs() {
-  pkgs="conky rofi plank vlc celluloid font-manager gedit geary gthumb eog evince
+  pkgs="conky rofi plank vlc celluloid font-manager geary gthumb eog evince
     inkscape seahorse transmission-gtk lollypop filezilla vlc foliate handbrake
-    xournalpp gnome-weather gnome-system-monitor gnome-calculator gnome-disk-utility 
-    gnome-tweaks gnome-browser-connector gnome-shell-extensions gnome-contacts 
-    gnome-sound-recorder gnome-software gnome-online-accounts gnome-themes-extra
-    gtk-engine-murrine sassc dconf-editor 
-    papirus-icon-theme ttf-fira-code  ttf-roboto ttf-firacode-nerd ttf-roboto-mono-nerd"
+    xournalpp gnome-calculator gnome-weather gnome-system-monitor gnome-disk-utility 
+    gnome-tweaks gnome-browser-connector gnome-contacts gnome-sound-recorder 
+    gnome-software gnome-online-accounts gnome-themes-extra gnome-calendar 
+    gtk-engine-murrine sassc dconf-editor kitty gvfs-goa gvfs-google
+    papirus-icon-theme ttf-fira-code ttf-roboto ttf-firacode-nerd ttf-roboto-mono-nerd"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
