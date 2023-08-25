@@ -20,6 +20,7 @@ delay=15
 image-source='xml:///usr/share/gnome-background-properties/adwaita.xml'
 
 [desktop/interface]
+cursor-blink-time=1200
 gtk-theme='Orchis-Light'
 icon-theme='Qogir'
 
@@ -85,7 +86,9 @@ toggle-recording=@as []
 unmaximize=@as []
 
 [desktop/peripherals/keyboard]
+delay=uint32 500
 numlock-state=false
+repeat-interval=uint32 30
 
 [desktop/sound]
 event-sounds=false
