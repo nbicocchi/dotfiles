@@ -12,7 +12,8 @@ quit-time-delay=60
 
 [desktop/background]
 picture-options='none'
-primary-color='#3d3d38384646'
+picture-uri='file:///home/nicola/Pictures/lines-c1-1400x900.jpg'
+primary-color='#555555555555'
 
 [desktop/background/slideshow]
 delay=15
