@@ -1,0 +1,32 @@
+[legacy]
+default-show-menubar=false
+menu-accelerator-enabled=false
+
+[legacy/keybindings]
+close-tab='disabled'
+close-window='<Primary><Shift>q'
+copy='<Primary><Shift>c'
+move-tab-left='disabled'
+move-tab-right='disabled'
+next-tab='<Primary><Shift>Right'
+paste='<Primary><Shift>v'
+prev-tab='<Primary><Shift>Left'
+
+[legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+background-color='rgb(48,48,53)'
+bold-color-same-as-fg=true
+cursor-background-color='rgb(255,255,255)'
+cursor-blink-mode='on'
+cursor-colors-set=false
+cursor-foreground-color='rgb(255,255,255)'
+cursor-shape='ibeam'
+default-size-columns=120
+default-size-rows=36
+font='FiraCode Nerd Font Mono 12'
+foreground-color='rgb(255,255,255)'
+highlight-background-color='rgb(255,255,255)'
+highlight-colors-set=false
+palette=['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']
+scrollbar-policy='never'
+use-system-font=false
+use-theme-colors=false
