@@ -27,7 +27,7 @@ install_base_gui_pkgs() {
     xournalpp baobab gnome-calculator gnome-weather gnome-system-monitor gnome-disk-utility 
     gnome-tweaks gnome-browser-connector gnome-contacts gnome-sound-recorder 
     gnome-software gnome-online-accounts gnome-themes-extra gnome-calendar 
-    gtk-engine-murrine sassc dconf-editor kitty gvfs-goa gvfs-google
+    gtk-engine-murrine sassc dconf-editor alacritty gvfs-goa gvfs-google
     papirus-icon-theme ttf-fira-code ttf-roboto ttf-firacode-nerd ttf-roboto-mono-nerd"
   sudo pacman -S --noconfirm --needed $pkgs
 }

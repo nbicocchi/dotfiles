@@ -1,17 +1,5 @@
 # PATH
-PATH="$HOME/bin:$PATH"
-
-# https://wiki.archlinux.org/title/Ruby#Setup
-if hash ruby 2>/dev/null ; then
-  export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-  PATH="$PATH:$GEM_HOME/bin"
-fi
-
-if hash yarn 2>/dev/null ; then
-  PATH="$PATH:${HOME}/.yarn/bin"
-fi
-
-export PATH
+export PATH="$HOME/bin:$PATH"
 
 # XDG
 export XDG_CONFIG_HOME=$HOME/.config
@@ -19,8 +7,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 # Locale
 export LANG=en_US.UTF-8
 
-export TERMINAL=kitty
-export TERM=kitty
+# Terminal
+export TERMINAL=alacritty
+export TERM=alacritty
 
 # GPG
 export GPG_TTY=$(tty)
