@@ -28,7 +28,7 @@ install_base_gui_pkgs() {
     gnome-tweaks gnome-browser-connector gnome-contacts gnome-sound-recorder 
     gnome-software gnome-online-accounts gnome-themes-extra gnome-calendar 
     gtk-engine-murrine sassc dconf-editor alacritty gvfs-goa gvfs-google
-    papirus-icon-theme ttf-fira-code ttf-roboto ttf-firacode-nerd ttf-roboto-mono-nerd"
+    papirus-icon-theme nerd-fonts"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
