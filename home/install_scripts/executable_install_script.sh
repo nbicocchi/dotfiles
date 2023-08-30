@@ -36,7 +36,8 @@ install_aur_pkgs() {
 install_flatpak_pkgs() {
   pkgs="com.google.Chrome com.google.EarthPro io.github.TheWisker.Cavasik
     de.haeckerfelix.Shortwave com.valvesoftware.Steam com.github.hugolabe.Wike
-    io.missioncenter.MissionCenter"
+    io.missioncenter.MissionCenter io.github.mimbrero.WhatsAppDesktop
+    org.signal.Signal"
   for pkg in $pkgs; do
     echo "Installing" "$pkg"...
     flatpak install --system --noninteractive --assumeyes flathub "$pkg" 
