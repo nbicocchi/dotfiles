@@ -15,32 +15,29 @@ install_pandoc_pkgs() {
 
 install_base_cli_pkgs() {
   pkgs="base-devel gdb git gnupg openssh net-tools curl wget mc micro
-    barrier btop htop chezmoi man-db bat bat-extras duf dua-cli trash-cli 
-    lazygit ranger ripgrep neovim neofetch xclip xsel fd lsd iotop stress 
-    dfc snapper zoxide exfatprogs ctags flatpak starship fzf rate-mirrors links"
+    barrier btop htop gtop chezmoi man-db bat bat-extras duf dua-cli trash-cli 
+    lazygit ripgrep neovim neofetch xclip xsel fd lsd stress 
+    snapper zoxide exfatprogs ctags flatpak starship fzf rate-mirrors"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_base_gui_pkgs() {
-  pkgs="alacritty rofi plank vlc celluloid font-manager geary gthumb eog evince
+  pkgs="alacritty rofi plank vlc celluloid font-manager evolution gthumb eog evince
       inkscape seahorse transmission-gtk lollypop filezilla vlc foliate handbrake
-      xournalpp cheese
-      gnome-calculator gnome-weather gnome-system-monitor gnome-disk-utility 
-      gnome-contacts gnome-sound-recorder gnome-online-accounts gnome-calendar gnome-games 
-      dconf-editor gvfs-goa gvfs-google papirus-icon-theme nerd-fonts"
+      xournalpp cheese signal-desktop dconf-editor gvfs-goa gvfs-google papirus-icon-theme 
+      nerd-fonts"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_aur_pkgs() {
-  pkgs="visual-studio-code-bin"
+  pkgs=""
   yay --noconfirm $pkgs
 }
 yay
 install_flatpak_pkgs() {
   pkgs="com.google.Chrome com.google.EarthPro io.github.TheWisker.Cavasik
-    de.haeckerfelix.Shortwave com.valvesoftware.Steam com.github.hugolabe.Wike
-    io.missioncenter.MissionCenter io.github.mimbrero.WhatsAppDesktop
-    org.signal.Signal"
+    de.haeckerfelix.Shortwave com.valvesoftware.Steam io.missioncenter.MissionCenter 
+    com.visualstudio.code us.zoom.Zoom io.github.mimbrero.WhatsAppDesktop"
   for pkg in $pkgs; do
     echo "Installing" "$pkg"...
     flatpak install --system --noninteractive --assumeyes flathub "$pkg" 
