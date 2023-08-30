@@ -22,9 +22,12 @@ install_base_cli_pkgs() {
 }
 
 install_base_gui_pkgs() {
-  pkgs="alacritty rofi plank vlc celluloid font-manager gthumb transmission-gtk 
-    lollypop filezilla vlc foliate handbrake xournalpp gnome gnome-extra 
-    gtk-engine-murrine sassc gvfs-goa gvfs-google papirus-icon-theme nerd-fonts"
+  pkgs="alacritty rofi plank vlc celluloid font-manager geary gthumb eog evince
+      inkscape seahorse transmission-gtk lollypop filezilla vlc foliate handbrake
+      xournalpp cheese
+      gnome-calculator gnome-weather gnome-system-monitor gnome-disk-utility 
+      gnome-contacts gnome-sound-recorder gnome-online-accounts gnome-calendar gnome-games 
+      dconf-editor gvfs-goa gvfs-google papirus-icon-theme nerd-fonts"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
@@ -32,7 +35,7 @@ install_aur_pkgs() {
   pkgs="visual-studio-code-bin"
   yay --noconfirm $pkgs
 }
-
+yay
 install_flatpak_pkgs() {
   pkgs="com.google.Chrome com.google.EarthPro io.github.TheWisker.Cavasik
     de.haeckerfelix.Shortwave com.valvesoftware.Steam com.github.hugolabe.Wike
