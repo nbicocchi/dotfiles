@@ -35,7 +35,7 @@ install_aur_pkgs() {
 }
 yay
 install_flatpak_pkgs() {
-  pkgs="com.google.Chrome com.google.EarthPro io.github.TheWisker.Cavasik
+  pkgs="com.google.Chrome com.google.EarthPro org.nickvision.cavalier
     de.haeckerfelix.Shortwave com.valvesoftware.Steam io.missioncenter.MissionCenter 
     com.visualstudio.code us.zoom.Zoom io.github.mimbrero.WhatsAppDesktop"
   for pkg in $pkgs; do
