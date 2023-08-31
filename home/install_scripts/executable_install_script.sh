@@ -37,7 +37,8 @@ yay
 install_flatpak_pkgs() {
   pkgs="com.google.Chrome com.google.EarthPro org.nickvision.cavalier
     de.haeckerfelix.Shortwave com.valvesoftware.Steam io.missioncenter.MissionCenter 
-    com.visualstudio.code us.zoom.Zoom io.github.mimbrero.WhatsAppDesktop"
+    com.visualstudio.code us.zoom.Zoom io.github.mimbrero.WhatsAppDesktop
+    com.discordapp.Discord"
   for pkg in $pkgs; do
     echo "Installing" "$pkg"...
     flatpak install --system --noninteractive --assumeyes flathub "$pkg" 
