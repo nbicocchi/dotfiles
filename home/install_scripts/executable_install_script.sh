@@ -22,7 +22,7 @@ install_base_cli_pkgs() {
 }
 
 install_base_gui_pkgs() {
-  pkgs="alacritty rofi plank vlc celluloid font-manager evolution gthumb eog evince
+  pkgs="alacritty rofi plank vlc celluloid font-manager geary gthumb eog evince
       inkscape seahorse transmission-gtk lollypop filezilla vlc foliate handbrake
       xournalpp cheese signal-desktop dconf-editor gvfs-goa gvfs-google papirus-icon-theme 
       nerd-fonts"
