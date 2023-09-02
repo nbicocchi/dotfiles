@@ -33,7 +33,7 @@ install_aur_pkgs() {
   pkgs=""
   yay --noconfirm $pkgs
 }
-yay
+
 install_flatpak_pkgs() {
   pkgs="com.google.Chrome com.google.EarthPro org.nickvision.cavalier
     de.haeckerfelix.Shortwave com.valvesoftware.Steam io.missioncenter.MissionCenter 
