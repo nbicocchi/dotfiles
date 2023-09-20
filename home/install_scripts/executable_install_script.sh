@@ -16,7 +16,7 @@ install_pandoc_pkgs() {
 install_base_cli_pkgs() {
   pkgs="base-devel gdb git gnupg openssh net-tools curl wget mc micro
     barrier btop htop gtop chezmoi man-db bat bat-extras duf dua-cli trash-cli 
-    lazygit ripgrep neovim neofetch xclip xsel fd lsd stress 
+    lazygit ripgrep neovim neofetch xclip xsel fd lsd stress shellcheck 
     snapper zoxide exfatprogs ctags flatpak starship fzf rate-mirrors"
   sudo pacman -S --noconfirm --needed $pkgs
 }
