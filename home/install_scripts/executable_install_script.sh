@@ -30,7 +30,7 @@ install_base_gui_pkgs() {
 }
 
 install_aur_pkgs() {
-  pkgs=""
+  pkgs="menulibre popcorntime-bin tor-browser-bin visual-studio-code-bin"
   yay --noconfirm $pkgs
 }
 
