@@ -22,23 +22,21 @@ install_base_cli_pkgs() {
 }
 
 install_base_gui_pkgs() {
-  pkgs="alacritty rofi plank vlc celluloid font-manager geary gthumb eog evince
-      inkscape seahorse transmission-gtk lollypop filezilla vlc foliate handbrake
-      xournalpp cheese signal-desktop dconf-editor gvfs-goa gvfs-google papirus-icon-theme 
-      nerd-fonts"
+  pkgs="vlc font-manager geary gthumb eog evince inkscape seahorse transmission-gtk 
+    lollypop filezilla foliate handbrake xournalpp cheese signal-desktop dconf-editor 
+    gvfs-goa gvfs-google papirus-icon-theme nerd-fonts libreoffice-fresh rawtherapee"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_aur_pkgs() {
-  pkgs="menulibre popcorntime-bin tor-browser-bin visual-studio-code-bin"
+  pkgs="google-chrome popcorntime-bin tor-browser-bin visual-studio-code-bin zoom"
   yay --noconfirm $pkgs
 }
 
 install_flatpak_pkgs() {
-  pkgs="com.google.Chrome com.google.EarthPro org.nickvision.cavalier
-    de.haeckerfelix.Shortwave com.valvesoftware.Steam io.missioncenter.MissionCenter 
-    us.zoom.Zoom io.github.mimbrero.WhatsAppDesktop com.discordapp.Discord
-    io.freetubeapp.FreeTube"
+  pkgs="org.nickvision.cavalier de.haeckerfelix.Shortwave com.valvesoftware.Steam 
+    io.missioncenter.MissionCenter io.github.mimbrero.WhatsAppDesktop
+    io.freetubeapp.FreeTube org.tenacityaudio.Tenacity"
   for pkg in $pkgs; do
     echo "Installing" "$pkg"...
     flatpak install --system --noninteractive --assumeyes flathub "$pkg" 
