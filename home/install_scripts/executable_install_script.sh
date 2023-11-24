@@ -29,14 +29,17 @@ install_base_gui_pkgs() {
 }
 
 install_aur_pkgs() {
-  pkgs="google-chrome popcorntime-bin tor-browser-bin visual-studio-code-bin zoom"
+  pkgs="cava cavasik docker-desktop freetube-bin google-chrome popcorntime-bin 
+    tela-icon-theme tor-browser-bin unigine-benchmarks-meta visual-studio-code-bin 
+    whatsapp-for-linux zoom"
   yay --noconfirm $pkgs
 }
 
 install_flatpak_pkgs() {
-  pkgs="org.nickvision.cavalier de.haeckerfelix.Shortwave com.valvesoftware.Steam 
-    io.missioncenter.MissionCenter io.github.mimbrero.WhatsAppDesktop
-    io.freetubeapp.FreeTube org.tenacityaudio.Tenacity"
+  pkgs="de.haeckerfelix.Shortwave com.valvesoftware.Steam 
+    io.missioncenter.MissionCenter org.tenacityaudio.Tenacity
+    net.supertuxkart.SuperTuxKart org.tuxpaint.Tuxpaint"
+
   for pkg in $pkgs; do
     echo "Installing" "$pkg"...
     flatpak install --system --noninteractive --assumeyes flathub "$pkg" 
