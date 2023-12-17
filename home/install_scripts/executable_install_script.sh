@@ -32,7 +32,7 @@ install_base_gui_pkgs() {
 install_aur_pkgs() {
   pkgs="cava cavasik docker-desktop freetube-bin google-chrome popcorntime-bin 
     tela-icon-theme tor-browser-bin unigine-benchmarks-meta visual-studio-code-bin 
-    whatsapp-for-linux zoom"
+    whatsapp-for-linux zoom sublime-text-4"
   yay --noconfirm $pkgs
 }
 
