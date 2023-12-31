@@ -1,18 +1,43 @@
 #!/bin/sh
 # vim: ft=sh:ts=4:sw=4:et:ai:cin
 
+conky_bin="conky"
+config_file=$(dirname $0)/"conky.conf"
+magic_id=$(md5sum "$config_file" | cut -c -12)
+toggle_mode="N"
+
 usage() {
-    echo "USAGE: $(basename $0) [-n] [-p CONKY_PATH]"
+    echo "USAGE: $(basename $0) [-t] [-p]"
 }
 
-conky_bin="conky"
-pause_flag="--pause=3"
-magic_id="0ce31833f8f0bae3" # truncated md5sum of 'lean-conky-config'
+start_conky() {
+    "$conky_bin" --daemonize --quiet --config="$config_file" -- "$magic_id"
+    return $?
+}
 
-while getopts "np:h" opt; do
+stop_conky() {
+    pkill --signal kill --full "conky.*\s-- $magic_id"
+    return $?
+}
+
+toggle_conky() {
+    if stop_conky; then
+        true
+    else
+        start_conky
+    fi
+}
+
+restart_conky() {
+    stop_conky
+    sleep 1
+    start_conky
+}
+
+while getopts "tp:h" opt; do
     case $opt in
-    n) # no-waiting
-        pause_flag=""
+    t) # toggle mode on
+        toggle_mode="Y"
         ;;
     p) # path to conky binary
         conky_bin=$(realpath -- "$OPTARG")
@@ -26,23 +51,30 @@ while getopts "np:h" opt; do
         ;;
     h) # help
         usage
-        exit
+        exit 1
         ;;
     \?)
-        echo "ERROR: Invalid option: -$OPTARG\n" >&2
         usage
-        exit 2
+        exit 1
         ;;
     esac
 done
 shift "$((OPTIND - 1))"
 
-cd $(dirname $0)
-pkill -f "conky.*\s-- $magic_id"
-
-[ -z "$pause_flag" ] && echo "Starting Conky..." || echo "Conky waiting 3 seconds to start..."
-if "$conky_bin" --daemonize --quiet "$pause_flag" --config=./conky.conf -- $magic_id; then
-    echo "Started"
+if [ "$toggle_mode" == "Y" ]; then 
+    toggle_conky
 else
-    echo "Failed"
+    restart_conky
 fi
+
+exit 0
+
+
+
+
+
+
+
+
+
+
