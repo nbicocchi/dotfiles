@@ -39,7 +39,6 @@ shift "$((OPTIND - 1))"
 
 cd $(dirname $0)
 pkill -f "conky.*\s-- $magic_id"
-font/install
 
 [ -z "$pause_flag" ] && echo "Starting Conky..." || echo "Conky waiting 3 seconds to start..."
 if "$conky_bin" --daemonize --quiet "$pause_flag" --config=./conky.conf -- $magic_id; then
