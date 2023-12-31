@@ -25,7 +25,7 @@ install_base_gui_pkgs() {
   pkgs="vlc font-manager geary gthumb eog evince inkscape seahorse transmission-gtk 
     lollypop filezilla foliate handbrake xournalpp cheese signal-desktop dconf-editor 
     gvfs-goa gvfs-google papirus-icon-theme nerd-fonts libreoffice-fresh rawtherapee
-    discord gimp"
+    discord gimp conky gnome-screenshot"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
