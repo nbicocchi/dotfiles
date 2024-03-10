@@ -24,22 +24,20 @@ install_base_cli_pkgs() {
 install_base_gui_pkgs() {
   pkgs="vlc font-manager geary gthumb eog evince inkscape seahorse transmission-gtk 
     lollypop filezilla foliate handbrake xournalpp cheese signal-desktop dconf-editor 
-    gvfs-goa gvfs-google papirus-icon-theme nerd-fonts libreoffice-fresh rawtherapee
-    discord gimp conky gnome-screenshot"
+    gvfs-goa gvfs-google nerd-fonts libreoffice-fresh discord gimp conky gnome-screenshot"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_aur_pkgs() {
-  pkgs="cava cavasik docker-desktop freetube-bin google-chrome popcorntime-bin 
-    tela-icon-theme tor-browser-bin unigine-benchmarks-meta visual-studio-code-bin 
-    whatsapp-for-linux zoom sublime-text-4"
-  yay --noconfirm $pkgs
+  pkgs="cava cavasik chatgpt-desktop-bin chatgpt-shell-cli docker-desktop
+    freetube-bin google-chrome javafx-scenebuilder mprime-bin popcorntime-bin
+    shortwave sublime-text-4 teams tor-browser-bin visual-studio-code-bin
+    whatsapp-for-linux zoom"
+  yay -S --noconfirm $pkgs
 }
 
 install_flatpak_pkgs() {
-  pkgs="de.haeckerfelix.Shortwave com.valvesoftware.Steam 
-    io.missioncenter.MissionCenter org.tenacityaudio.Tenacity
-    net.supertuxkart.SuperTuxKart org.tuxpaint.Tuxpaint"
+  pkgs=""
 
   for pkg in $pkgs; do
     echo "Installing" "$pkg"...
