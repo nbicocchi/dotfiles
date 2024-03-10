@@ -33,7 +33,7 @@ install_aur_pkgs() {
     freetube-bin google-chrome javafx-scenebuilder mprime-bin popcorntime-bin
     shortwave sublime-text-4 teams tor-browser-bin visual-studio-code-bin
     whatsapp-for-linux zoom"
-  yay -S --noconfirm $pkgs
+  yay -S --aur --noconfirm $pkgs
 }
 
 install_flatpak_pkgs() {
