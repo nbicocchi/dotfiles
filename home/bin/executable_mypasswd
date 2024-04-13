@@ -7,11 +7,10 @@
 # Configuration
 RECIPIENT="nicola.bicocchi@gmail.com"
 STORAGE_ENC_REMOTE="/run/user/1000/gvfs/google-drive:host=unimore.it,user=nbicocchi/0AM-alrhdq_d4Uk9PVA/0B8-alrhdq_d4MDJuVWs4NlVGMnM/1WgF9Hw3hx50XzhORJhRZmETYV1067uPB"
-STORAGE_ENC_LOCAL="/tmp/mypasswd.enc"
+STORAGE_ENC_LOCAL="$HOME"/.mypasswd/mypasswd.enc
 PASSWORD_LENGTH=8
 
-# Functions
-init() {
+init_deps() {
   case "$(uname -s)" in
     Linux*) 
       which gpg >/dev/null 2>&1 || error "unable to find gpg. please install." 
@@ -33,13 +32,8 @@ init() {
   esac
 }
 
-error() {
-  echo "[ERROR]: $1" 
-  exit 1
-}
-
-warn() {
-  echo "[WARNING]: $1" 
+init_local_folder() {
+  mkdir -p $(dirname "$STORAGE_ENC_LOCAL") || error "unable to create local folder"
 }
 
 verify_keys() {
@@ -62,8 +56,18 @@ verify_encoded_file() {
   error "encoded file unavailable"
 }
 
+error() {
+  echo "[ERROR]: $1" 
+  exit 1
+}
+
+warn() {
+  echo "[WARNING]: $1" 
+}
+
 # Main
-init 
+init_deps 
+init_local_folder
 verify_encoded_file
 verify_keys
 
