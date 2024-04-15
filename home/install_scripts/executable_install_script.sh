@@ -30,9 +30,9 @@ install_base_gui_pkgs() {
 }
 
 install_aur_pkgs() {
-  pkgs="cava cavasik chatgpt-desktop-bin chatgpt-shell-cli docker-desktop
-    freetube-bin google-chrome javafx-scenebuilder mprime-bin popcorntime-bin
-    shortwave sublime-text-4 teams visual-studio-code-bin whatsapp-for-linux zoom"
+  pkgs="cava cavasik shortwave chatgpt-desktop-bin chatgpt-shell-cli docker-desktop
+    freetube-bin google-chrome javafx-scenebuilder popcorntime-bin sublime-text-4 
+    teams visual-studio-code-bin whatsapp-for-linux menulibre"
   yay -S --aur --noconfirm $pkgs
 }
 
