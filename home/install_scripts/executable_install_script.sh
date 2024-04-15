@@ -17,12 +17,13 @@ install_base_cli_pkgs() {
   pkgs="base-devel gdb git gnupg openssh net-tools curl wget mc micro
     barrier btop htop gtop chezmoi man-db bat bat-extras duf dua-cli trash-cli 
     lazygit ripgrep neovim neofetch xclip xsel fd lsd stress shellcheck 
-    snapper zoxide exfatprogs ctags flatpak starship fzf rate-mirrors"
+    snapper zoxide exfatprogs ctags flatpak starship fzf rate-mirrors
+    hunspell hunspell-it hunspell-en_us"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_base_gui_pkgs() {
-  pkgs="vlc font-manager geary gthumb eog evince inkscape seahorse transmission-gtk 
+  pkgs="vlc font-manager thunderbird gthumb eog evince inkscape seahorse transmission-gtk 
     lollypop filezilla foliate handbrake xournalpp cheese signal-desktop dconf-editor 
     gvfs-goa gvfs-google nerd-fonts libreoffice-fresh discord gimp conky gnome-screenshot"
   sudo pacman -S --noconfirm --needed $pkgs
@@ -31,8 +32,7 @@ install_base_gui_pkgs() {
 install_aur_pkgs() {
   pkgs="cava cavasik chatgpt-desktop-bin chatgpt-shell-cli docker-desktop
     freetube-bin google-chrome javafx-scenebuilder mprime-bin popcorntime-bin
-    shortwave sublime-text-4 teams tor-browser-bin visual-studio-code-bin
-    whatsapp-for-linux zoom"
+    shortwave sublime-text-4 teams visual-studio-code-bin whatsapp-for-linux zoom"
   yay -S --aur --noconfirm $pkgs
 }
 
