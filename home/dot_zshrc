@@ -51,3 +51,6 @@ HISTFILE=~/.histfile
 HISTSIZE=50000
 SAVEHIST=50000
 
+# Jenv setup
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
