@@ -8,7 +8,7 @@ install_zsh_pkgs() {
 }
 
 install_base_cli_pkgs() {
-  pkgs="base-devel gdb git gnupg openssh net-tools curl wget mc micro
+  pkgs="base-devel gdb git gnupg openssh net-tools curl wget mc micro vsftpd
     barrier btop htop gtop chezmoi man-db bat bat-extras duf dua-cli trash-cli 
     lazygit ripgrep neovim neofetch xclip xsel fd lsd stress shellcheck 
     snapper zoxide exfatprogs ctags flatpak starship fzf rate-mirrors
