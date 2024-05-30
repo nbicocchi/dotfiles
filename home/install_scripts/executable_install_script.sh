@@ -19,7 +19,8 @@ install_base_cli_pkgs() {
 install_base_gui_pkgs() {
   pkgs="vlc font-manager thunderbird gthumb eog evince inkscape seahorse transmission-gtk 
     lollypop filezilla foliate handbrake xournalpp cheese signal-desktop dconf-editor 
-    gvfs-goa gvfs-google nerd-fonts libreoffice-fresh discord gimp conky gnome-screenshot"
+    gvfs-goa gvfs-google nerd-fonts libreoffice-fresh discord gimp conky gnome-screenshot
+    gnome-sound-recorder"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
