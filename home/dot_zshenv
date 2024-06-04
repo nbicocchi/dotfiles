@@ -1,5 +1,8 @@
-# PATH
+# bin
 export PATH="$HOME/bin:$PATH"
+
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
 
 # XDG
 export XDG_CONFIG_HOME=$HOME/.config
@@ -19,4 +22,3 @@ export GPG_AGENT_INFO=""
 export VISUAL=micro
 export EDITOR=micro
 export SUDO_EDITOR=micro
-

@@ -8,7 +8,7 @@ alias rmorph='sudo pacman -Rns $(pacman -Qtdq)'
 alias pacsize="expac -H M '%m\t%n' | sort -h"
 alias pacview="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
-alias update="sudo pacman -Syyu && yay -Su --aur --devel"
+alias update="yay -Syyu"
 alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
 alias update-mirrors='export TMPFILE="$(mktemp)"; \
     sudo true; \
