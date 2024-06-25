@@ -22,3 +22,6 @@ export GPG_AGENT_INFO=""
 export VISUAL=micro
 export EDITOR=micro
 export SUDO_EDITOR=micro
+
+# Java fonts
+JAVA_FONTS=/usr/share/fonts/TTF
