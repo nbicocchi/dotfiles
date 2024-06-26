@@ -11,23 +11,23 @@ install_base_cli_pkgs() {
   pkgs="base-devel gdb git gnupg openssh net-tools curl wget mc micro vsftpd
     barrier btop htop gtop chezmoi man-db bat bat-extras duf dua-cli trash-cli 
     lazygit ripgrep neovim neofetch xclip xsel fd lsd stress shellcheck 
-    snapper zoxide exfatprogs ctags flatpak starship fzf rate-mirrors
-    hunspell hunspell-it hunspell-en_us maven gradle jdk17-openjdk jdk21-openjdk jenv"
+    snapper zoxide exfatprogs ctags flatpak starship fzf hunspell hunspell-it 
+    hunspell-en_us maven gradle jdk17-openjdk jdk21-openjdk jenv"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_base_gui_pkgs() {
-  pkgs="vlc font-manager thunderbird gthumb eog evince inkscape seahorse transmission-gtk 
-    lollypop filezilla foliate handbrake xournalpp cheese signal-desktop dconf-editor 
-    gvfs-goa gvfs-google nerd-fonts libreoffice-fresh discord gimp conky gnome-screenshot
-    gnome-sound-recorder"
+  pkgs="vlc font-manager thunderbird inkscape transmission-gtk lollypop filezilla 
+    foliate handbrake xournalpp signal-desktop nerd-fonts libreoffice-fresh discord gimp 
+    conky inkscape cheese gthumb eog evince seahorse gvfs-goa gvfs-google gnome-screenshot
+    gnome-sound-recorder gnome-shell-extension-dash-to-panel gnome-shell-extension-desktop-icons-ng"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_aur_pkgs() {
   pkgs="cava cavasik shortwave chatgpt-desktop-bin chatgpt-shell-cli docker-desktop
     freetube-bin google-chrome javafx-scenebuilder popcorntime-bin sublime-text-4 
-    teams visual-studio-code-bin ferdium-bin menulibre adw-gtk3"
+    teams visual-studio-code-bin whatsapp-for-linux menulibre adw-gtk3"
   yay -S --aur --noconfirm $pkgs
 }
 
