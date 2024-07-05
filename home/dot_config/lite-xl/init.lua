@@ -11,7 +11,7 @@ local common = require "core.common"
 ------------------------------ Themes ----------------------------------------
 
 -- light theme:
-core.reload_module("colors.winter")
+core.reload_module("colors.ayu-mirage")
 
 --------------------------- Key bindings -------------------------------------
 
@@ -25,9 +25,8 @@ core.reload_module("colors.winter")
 ------------------------------- Fonts ----------------------------------------
 
 -- customize fonts:
-style.font = renderer.font.load(DATADIR .. "/fonts/FiraSans-Regular.ttf", 30 * SCALE)
-style.code_font = renderer.font.load(DATADIR .. "/fonts/JetBrainsMono-Regular.ttf", 30 * SCALE)
-style.icon_font = renderer.font.load(DATADIR .. "/fonts/icons.ttf", 24 * SCALE)
+style.font = renderer.font.load(USERDIR .. "/fonts/HackNerdFont-Regular.ttf", 30 * SCALE)
+style.code_font = renderer.font.load(USERDIR .. "/fonts/HackNerdFont-Regular.ttf", 30 * SCALE)
 --
 -- DATADIR is the location of the installed Lite XL Lua code, default color
 -- schemes and fonts.
@@ -76,7 +75,7 @@ style.icon_font = renderer.font.load(DATADIR .. "/fonts/icons.ttf", 24 * SCALE)
 
 config.tab_type = "soft" -- soft for spaces, hard for real tabs (\t)
 config.indent_size = 4   -- 4 spaces
-config.borderless = true
+config.borderless = false
 
 config.plugins.treeview = common.merge({
   -- Default treeview width
