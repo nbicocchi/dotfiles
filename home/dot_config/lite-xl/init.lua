@@ -25,8 +25,8 @@ core.reload_module("colors.ayu-mirage")
 ------------------------------- Fonts ----------------------------------------
 
 -- customize fonts:
-style.font = renderer.font.load(USERDIR .. "/fonts/HackNerdFont-Regular.ttf", 30 * SCALE)
-style.code_font = renderer.font.load(USERDIR .. "/fonts/HackNerdFont-Regular.ttf", 30 * SCALE)
+style.font = renderer.font.load(USERDIR .. "/fonts/HackNerdFont-Regular.ttf", 36 * SCALE)
+style.code_font = renderer.font.load(USERDIR .. "/fonts/HackNerdFont-Regular.ttf", 36 * SCALE)
 --
 -- DATADIR is the location of the installed Lite XL Lua code, default color
 -- schemes and fonts.
@@ -90,8 +90,8 @@ config.plugins.terminal = common.merge({
 config.plugins.spellcheck = common.merge({
   enabled = true,
   files = { "%.txt$", "%.md$", "%.markdown$" },
-  -- dictionary_file = "/usr/share/hunspell/it_IT.dic"
-  dictionary_file = "/usr/share/hunspell/en_US.dic"
+  dictionary_file = "/usr/share/hunspell/it_IT.dic"
+  -- dictionary_file = "/usr/share/hunspell/en_US.dic"
 }, config.plugins.spellcheck)
 
 
