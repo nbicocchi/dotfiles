@@ -20,14 +20,15 @@ install_base_gui_pkgs() {
   pkgs="vlc font-manager thunderbird inkscape transmission-gtk lollypop filezilla helvum
     foliate handbrake xournalpp signal-desktop nerd-fonts libreoffice-fresh discord gimp 
     conky inkscape cheese gthumb eog evince seahorse gvfs-goa gvfs-google gnome-screenshot
-    gnome-sound-recorder gnome-shell-extension-dash-to-panel gnome-shell-extension-desktop-icons-ng"
+    gnome-sound-recorder gnome-shell-extension-dash-to-panel gnome-shell-extension-desktop-icons-ng
+    lite-xl"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_aur_pkgs() {
   pkgs="cava cavasik shortwave chatgpt-desktop-bin chatgpt-shell-cli docker-desktop
-    freetube-bin google-chrome javafx-scenebuilder popcorntime-bin sublime-text-4 
-    teams visual-studio-code-bin whatsapp-for-linux menulibre adw-gtk3"
+    freetube-bin google-chrome javafx-scenebuilder popcorntime-bin teams visual-studio-code-bin 
+    whatsapp-for-linux menulibre adw-gtk3"
   yay -S --aur --noconfirm $pkgs
 }
 
