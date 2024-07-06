@@ -6,12 +6,11 @@ local core = require "core"
 local keymap = require "core.keymap"
 local config = require "core.config"
 local style = require "core.style"
-local common = require "core.common"
 
 ------------------------------ Themes ----------------------------------------
 
 -- light theme:
-core.reload_module("colors.ayu-mirage")
+-- core.reload_module("colors.summer")
 
 --------------------------- Key bindings -------------------------------------
 
@@ -25,8 +24,8 @@ core.reload_module("colors.ayu-mirage")
 ------------------------------- Fonts ----------------------------------------
 
 -- customize fonts:
-style.font = renderer.font.load(USERDIR .. "/fonts/HackNerdFont-Regular.ttf", 36 * SCALE)
-style.code_font = renderer.font.load(USERDIR .. "/fonts/HackNerdFont-Regular.ttf", 36 * SCALE)
+-- style.font = renderer.font.load(DATADIR .. "/fonts/FiraSans-Regular.ttf", 14 * SCALE)
+-- style.code_font = renderer.font.load(DATADIR .. "/fonts/JetBrainsMono-Regular.ttf", 14 * SCALE)
 --
 -- DATADIR is the location of the installed Lite XL Lua code, default color
 -- schemes and fonts.
@@ -72,26 +71,4 @@ style.code_font = renderer.font.load(USERDIR .. "/fonts/HackNerdFont-Regular.ttf
 --   "%.suo$",         "%.pdb$",       "%.idb$",        "%.class$", "%.psd$", "%.db$",
 --   "^desktop%.ini$", "^%.DS_Store$", "^%.directory$",
 -- }
-
-config.tab_type = "soft" -- soft for spaces, hard for real tabs (\t)
-config.indent_size = 4   -- 4 spaces
-config.borderless = false
-
-config.plugins.treeview = common.merge({
-  -- Default treeview width
-  size = 400 * SCALE
-}, config.plugins.treeview)
-
-config.plugins.terminal = common.merge({
-  -- the default height of the console drawer
-  drawer_height = 600,
-}, config.plugins.terminal)
-
-config.plugins.spellcheck = common.merge({
-  enabled = true,
-  files = { "%.txt$", "%.md$", "%.markdown$" },
-  dictionary_file = "/usr/share/hunspell/it_IT.dic"
-  -- dictionary_file = "/usr/share/hunspell/en_US.dic"
-}, config.plugins.spellcheck)
-
 
