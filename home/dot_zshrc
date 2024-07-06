@@ -10,6 +10,9 @@ source /usr/share/fzf/completion.zsh
 # Load aliases
 source ~/.zsh_aliases
 
+# Load functions
+source ~/.zsh_functions
+
 ## Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *

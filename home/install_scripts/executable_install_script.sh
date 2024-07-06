@@ -12,7 +12,7 @@ install_base_cli_pkgs() {
     barrier btop htop gtop chezmoi man-db bat bat-extras duf dua-cli trash-cli 
     lazygit ripgrep neovim neofetch xclip xsel fd lsd stress shellcheck 
     snapper zoxide exfatprogs ctags flatpak starship fzf hunspell hunspell-it 
-    hunspell-en_us maven gradle jdk17-openjdk jdk21-openjdk jenv"
+    hunspell-en_us maven gradle jdk17-openjdk jdk21-openjdk jenv pacman-contrib"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
