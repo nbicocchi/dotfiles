@@ -1,34 +1,34 @@
 #!/usr/bin/env sh
 
-install_zsh_pkgs() {
+install_base_cli_pkgs() {
   pkgs="zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
-    zsh-completions"
+    zsh-completions starship 
+    pacman-contrib base-devel gdb git gnupg openssh net-tools curl wget mc micro vsftpd 
+    btop chezmoi man-db bat bat-extras dua-cli trash-cli lazygit ripgrep fzf
+    neovim neofetch xclip xsel fd eza shellcheck snapper zoxide exfatprogs ctags 
+    hunspell hunspell-it hunspell-en_us 
+    maven gradle jdk17-openjdk jdk21-openjdk jenv"
   sudo pacman -S --noconfirm --needed $pkgs
   chsh -s /bin/zsh
 }
 
-install_base_cli_pkgs() {
-  pkgs="base-devel gdb git gnupg openssh net-tools curl wget mc micro vsftpd
-    barrier btop htop gtop chezmoi man-db bat bat-extras duf dua-cli trash-cli 
-    lazygit ripgrep neovim neofetch xclip xsel fd lsd stress shellcheck 
-    snapper zoxide exfatprogs ctags flatpak starship fzf hunspell hunspell-it 
-    hunspell-en_us maven gradle jdk17-openjdk jdk21-openjdk jenv pacman-contrib"
-  sudo pacman -S --noconfirm --needed $pkgs
-}
-
 install_base_gui_pkgs() {
-  pkgs="vlc font-manager thunderbird inkscape lite-xl lollypop filezilla helvum
-    foliate handbrake xournalpp signal-desktop nerd-fonts libreoffice-fresh discord gimp 
-    conky inkscape cheese gthumb eog evince seahorse gvfs-goa gvfs-google gnome-screenshot
-    gnome-sound-recorder gnome-shell-extension-dash-to-panel gnome-shell-extension-desktop-icons-ng
-    fragments"
+  pkgs="nerd-fonts font-manager chromium firefox thunderbird inkscape lite-xl lollypop filezilla
+    helvum foliate handbrake xournalpp signal-desktop libreoffice-fresh discord gimp conky vlc 
+    cheese gthumb eog evince seahorse gvfs-goa gvfs-google 
+    gnome-autoar gnome-backgrounds gnome-bluetooth-3.0 gnome-browser-connector gnome-calculator 
+    gnome-characters gnome-clocks gnome-color-manager gnome-connections gnome-console
+    gnome-control-center gnome-desktop gnome-desktop-4 gnome-desktop-common gnome-disk-utility
+    gnome-keybindings gnome-keyring gnome-logs gnome-maps gnome-menus gnome-online-accounts
+    gnome-remote-desktop gnome-screenshot gnome-session gnome-settings-daemon gnome-shell
+    gnome-sound-recorder gnome-system-monitor gnome-text-editor gnome-tweaks gnome-user-docs
+    gnome-user-share gnome-video-effects gnome-weather fragments"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_aur_pkgs() {
   pkgs="cava cavasik shortwave chatgpt-desktop-bin chatgpt-shell-cli docker-desktop
-    freetube-bin google-chrome javafx-scenebuilder popcorntime-bin teams visual-studio-code-bin 
-    whatsapp-for-linux menulibre adw-gtk3"
+    freetube-bin javafx-scenebuilder popcorntime-bin teams whatsapp-for-linux menulibre adw-gtk3"
   yay -S --aur --noconfirm $pkgs
 }
 
@@ -43,7 +43,6 @@ install_flatpak_pkgs() {
 
 usage() {
   printf "\nUsage:\n"
-  echo " --zsh      Install zsh"
   echo " --base-cli Install base cli pkgs"
   echo " --basi-gui Install base gui pkgs"
   echo " --aur      Install AUR pkgs"
@@ -52,7 +51,6 @@ usage() {
 }
 
 ## CLI options
-ZSH=false
 BASECLI=false
 BASEGUI=false
 AUR=false
@@ -64,7 +62,6 @@ fi
 
 while [ "$#" -gt 0 ] ; do
   case "$1" in
-    --zsh) ZSH=true ;;
     --base-cli) BASECLI=true ;;
     --base-gui) BASEGUI=true ;;
     --aur) AUR=true ;;
@@ -74,7 +71,6 @@ while [ "$#" -gt 0 ] ; do
   shift
 done
 
-"$ZSH" && install_zsh_pkgs
 "$BASECLI" && install_base_cli_pkgs
 "$BASEGUI" && install_base_gui_pkgs
 "$AUR" && install_aur_pkgs
