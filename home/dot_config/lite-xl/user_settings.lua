@@ -13,7 +13,7 @@ return {
         ["bold"] = false,
         ["hinting"] = "slight",
         ["italic"] = false,
-        ["size"] = 18,
+        ["size"] = 20,
         ["smoothing"] = false,
         ["strikethrough"] = false,
         ["underline"] = false
@@ -31,7 +31,7 @@ return {
         ["bold"] = false,
         ["hinting"] = "slight",
         ["italic"] = false,
-        ["size"] = 18,
+        ["size"] = 20,
         ["smoothing"] = false,
         ["strikethrough"] = false,
         ["underline"] = false
@@ -40,6 +40,9 @@ return {
     ["indent_size"] = 4,
     ["message_timeout"] = 10,
     ["plugins"] = {
+      ["linewrapping"] = {
+        ["enable_by_default"] = true
+      },
       ["minimap"] = {
         ["caret_color"] = {
           [1] = 147,
@@ -53,6 +56,13 @@ return {
           [3] = 87,
           [4] = 255
         }
+      },
+      ["scale"] = {
+        ["default_scale"] = 1.75,
+        ["mode"] = "ui"
+      },
+      ["treeview"] = {
+        ["size"] = 525.0
       }
     },
     ["theme"] = "jellybeans"
