@@ -5,9 +5,9 @@ alias lz='eza --icons'
 alias halt="sudo systemctl poweroff"
 alias reboot="sudo systemctl reboot"
 
-alias rmorph='sudo pacman -Rns $(pacman -Qtdq)'  
-alias pacsize="expac -H M '%m\t%n' | sort -h"
-alias pacview="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+alias rmorph="sudo pacman -Rns $(pacman -Qtdq)"  
+alias pacrm="pacman -Qq | fzf --reverse --multi --preview 'pacman -Qil {}' | xargs -ro sudo pacman -Rs"
+alias pacrmaur="pacman -Qmq | fzf --reverse --multi --preview 'pacman -Qil {}' | xargs -ro sudo pacman -Rs"
 
 alias update="yay -Syyu"
-alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
+alias drop-caches="sudo paccache -rk3; yay -Sc --aur --noconfirm"
