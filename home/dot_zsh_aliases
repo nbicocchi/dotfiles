@@ -2,13 +2,13 @@ alias vi="nvim"
 alias ls='ls --color=auto'
 alias lz='eza --icons'
 
-alias halt="sudo systemctl poweroff"
-alias reboot="sudo systemctl reboot"
+alias halt='sudo systemctl poweroff'
+alias reboot='sudo systemctl reboot'
 
-alias rmorph="sudo pacman -Rns $(pacman -Qtdq)"  
+alias rmorph='pacman -Qtdq | xargs -ro sudo pacman -Rs'  
 alias pacls="pacman -Slq | fzf --reverse --multi --preview 'pacman -Qil {}' | xargs -ro sudo pacman -S"
 alias pacrm="pacman -Qq | fzf --reverse --multi --preview 'pacman -Qil {}' | xargs -ro sudo pacman -Rs"
 alias pacrmaur="pacman -Qmq | fzf --reverse --multi --preview 'pacman -Qil {}' | xargs -ro sudo pacman -Rs"
 
-alias update="yay -Syyu"
-alias drop-caches="sudo paccache -rk3; yay -Sc --aur --noconfirm"
+alias update='yay -Syyu'
+alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
