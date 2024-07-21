@@ -6,7 +6,7 @@ install_base_cli_pkgs() {
     pacman-contrib base-devel gdb git gnupg openssh net-tools curl wget mc micro vsftpd 
     btop chezmoi man-db bat bat-extras dua-cli trash-cli lazygit ripgrep fzf
     neovim neofetch xclip xsel fd eza shellcheck snapper zoxide exfatprogs ctags 
-    hunspell hunspell-it hunspell-en_us 
+    hunspell hunspell-it hunspell-en_us pyenv
     maven gradle jdk17-openjdk jdk21-openjdk jenv"
   sudo pacman -S --noconfirm --needed $pkgs
   chsh -s /bin/zsh
