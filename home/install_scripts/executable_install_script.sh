@@ -79,7 +79,7 @@ done
 
 "$BASECLI" || "$BASEGUI" || "$AUR" || "$FLATPAK" || usage
 
-#sudo pacman -Syyu --noconfirm
+sudo pacman -Syyu --noconfirm
 if ! pacman -Qs yay >/dev/null 2>&1; then
   install_yay
 fi
