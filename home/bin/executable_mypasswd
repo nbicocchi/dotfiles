@@ -86,9 +86,10 @@ decipher_credentials_all() {
 }
 
 decipher_credentials_interactive() {
-  site=$(decipher_credentials_all | fzf --exact)
-  echo "$site"
-  echo "$site" | cut -d '#' -f 4 | xargs | $TOCLIPBOARD
+  all=$(decipher_credentials_all)
+  selection=$(echo "$all" | fzf --exact)
+  echo "$selection"
+  echo "$selection" | cut -d '#' -f 4 | xargs | $TOCLIPBOARD
 }
 
 # Main
