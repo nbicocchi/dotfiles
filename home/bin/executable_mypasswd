@@ -9,51 +9,53 @@ RECIPIENT="nicola.bicocchi@gmail.com"
 STORAGE_ENC_REMOTE="/run/user/1000/gvfs/google-drive:host=unimore.it,user=nbicocchi/0AM-alrhdq_d4Uk9PVA/0B8-alrhdq_d4MDJuVWs4NlVGMnM/1WgF9Hw3hx50XzhORJhRZmETYV1067uPB"
 STORAGE_ENC_LOCAL="$HOME"/.mypasswd/mypasswd.gpg
 PASSWORD_LENGTH=8
+TOCLIPBOARD="xclip -selection clipboard"
 
-init_deps() {
-  case "$(uname -s)" in
-    Linux*) 
-      which gpg >/dev/null 2>&1 || error "unable to find gpg. please install." 
-      which xclip >/dev/null 2>&1 || error "unable to find xclip. please install."
-      which mktemp >/dev/null 2>&1 || error "unable to find mktemp. please install." 
-      TOCLIPBOARD="xclip -selection clipboard"
-      ;;
-  
-    Darwin*)
-      which gpg >/dev/null 2>&1 || error "unable to find gpg. please install." 
-      which pbcopy >/dev/null 2>&1 || error "unable to find pbcopy. please install." 
-      which mktemp >/dev/null 2>&1 || error "unable to find mktemp. please install."
-      TOCLIPBOARD="pbcopy"
-      ;;
-
-    *)  
-      error "Unsupported architecture"
-    ;;
-  esac
+usage() {
+  printf "\nUsage:\n"
+  echo "-g Generate a new password"
+  echo "-e Edit credentials"
+  echo "-d Decipher credentials"
+  echo "-s Search credentials"
+  exit 1
 }
 
-init_local_folder() {
+verify_deps() { 
+  which gpg >/dev/null 2>&1 || error "unable to find gpg. please install." 
+  which fzf >/dev/null 2>&1 || error "unable to find fzf. please install." 
+  which openssl >/dev/null 2>&1 || error "unable to find openssl. please install." 
+  which xclip >/dev/null 2>&1 || error "unable to find xclip. please install."
+  which mktemp >/dev/null 2>&1 || error "unable to find mktemp. please install." 
+}
+
+verify_local_folder() {
   mkdir -p $(dirname "$STORAGE_ENC_LOCAL") || error "unable to create local folder"
+}
+
+verify_local_file() {
+  [ -r "$STORAGE_ENC_LOCAL" ] || error "unable to find encrypted local file"
 }
 
 verify_keys() {
   gpg --list-secret-keys | grep "$RECIPIENT" > /dev/null 2>&1 || error "Missing keys for "$RECIPIENT". Import with gpg --import keys"
 }
 
-verify_encoded_file() {
-  if [ -r "$STORAGE_ENC_REMOTE" ]; then
-    STORAGE_ENC="$STORAGE_ENC_REMOTE"
-    cp "$STORAGE_ENC_REMOTE" "$STORAGE_ENC_LOCAL"
-    return
+copy_remote_to_local() {
+  if [ ! -r "$STORAGE_ENC_REMOTE" ]; then
+    warn "unable to fetch from remote"
+    sleep 1
+  else 
+    cp "$STORAGE_ENC_REMOTE" "$STORAGE_ENC_LOCAL" 
   fi
+}
 
-  if [ -r "$STORAGE_ENC_LOCAL" ]; then
-    warn "using cached encoded file"
-    STORAGE_ENC="$STORAGE_ENC_LOCAL"
-    return
+copy_local_to_remote() {
+  if [ ! -r "$STORAGE_ENC_REMOTE" ]; then
+    warn "unable to push to remote"
+    sleep 1
+  else 
+    cp "$STORAGE_ENC_LOCAL" "$STORAGE_ENC_REMOTE" 
   fi
-
-  error "encoded file unavailable"
 }
 
 error() {
@@ -65,35 +67,53 @@ warn() {
   echo "[WARNING]: $1" 
 }
 
-# Main
-init_deps 
-init_local_folder
-verify_encoded_file
-verify_keys
+generate_password() {
+  password=$(openssl rand -base64 "$PASSWORD_LENGTH") 
+  echo "$password" 
+  echo "$password" | $TOCLIPBOARD
+}
 
-test $# -eq 1 || error "usage: $0 site|all|password|edit"
-			  
-case "$1" in
-  "edit")
+edit_credentials() {
     STORAGE_DEC="$(mktemp)"
-    gpg --decrypt "$STORAGE_ENC" > "$STORAGE_DEC"
+    gpg --decrypt "$STORAGE_ENC_LOCAL" > "$STORAGE_DEC"
     "$EDITOR" "$STORAGE_DEC"
-    gpg --encrypt --recipient "$RECIPIENT" --output "$STORAGE_ENC" "$STORAGE_DEC"
+    gpg --encrypt --recipient "$RECIPIENT" --output "$STORAGE_ENC_LOCAL" "$STORAGE_DEC"
     rm -rfP "$STORAGE_DEC" >/dev/null 2>&1
-    ;;
-  "password") 
-    password=$(openssl rand -base64 "$PASSWORD_LENGTH") 
-    echo "$password" 
-    echo "$password" | $TOCLIPBOARD
-    ;;
-  "all") 
-    gpg --decrypt "$STORAGE_ENC"
-    ;;
-  *)
-    content=$(gpg --decrypt "$STORAGE_ENC" 2>/dev/null)
-    echo "$content" | grep -A 2 '^#.*'$1
-    echo "$content" | grep -A 2 '^#.*'$1 | tail -n 1 | $TOCLIPBOARD
-    ;;
-esac 
+}
 
-exit 0
+decipher_credentials_all() { 
+  gpg --decrypt "$STORAGE_ENC_LOCAL"
+}
+
+decipher_credentials_interactive() {
+  site=$(decipher_credentials_all | fzf --exact)
+  echo "$site"
+  echo "$site" | cut -d '#' -f 4 | xargs | $TOCLIPBOARD
+}
+
+# Main
+verify_deps
+verify_keys
+verify_local_folder 
+copy_remote_to_local
+verify_local_file
+
+while getopts "gedsh" o; do
+    case "$o" in
+        g)  generate_password
+            ;;
+        e)  edit_credentials
+            copy_local_to_remote
+            ;;
+        d)  decipher_credentials_all
+            ;;
+        s)  decipher_credentials_interactive
+            ;;
+        h)  usage
+            ;;
+        *)  usage
+            ;;
+    esac
+    exit 0
+done
+
