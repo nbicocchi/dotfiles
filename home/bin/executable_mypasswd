@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Requirements
-# On Linux (requires gnupg xclip mktemp)
-# On Mac (requires gnupg pbcopy mktemp)
-
 # Configuration
 RECIPIENT="nicola.bicocchi@gmail.com"
 STORAGE_ENC_REMOTE="/run/user/1000/gvfs/google-drive:host=unimore.it,user=nbicocchi/0AM-alrhdq_d4Uk9PVA/0B8-alrhdq_d4MDJuVWs4NlVGMnM/1WgF9Hw3hx50XzhORJhRZmETYV1067uPB"
@@ -11,6 +7,7 @@ STORAGE_ENC_LOCAL="$HOME"/.mypasswd/mypasswd.gpg
 PASSWORD_LENGTH=8
 TOCLIPBOARD="xclip -selection clipboard"
 
+# Functions
 usage() {
   printf "\nUsage:\n"
   echo "-g Generate a new password"
@@ -28,16 +25,16 @@ verify_deps() {
   which mktemp >/dev/null 2>&1 || error "unable to find mktemp. please install." 
 }
 
+verify_keys() {
+  gpg --list-secret-keys | grep "$RECIPIENT" > /dev/null 2>&1 || error "Missing keys for "$RECIPIENT". Import with gpg --import keys"
+}
+
 verify_local_folder() {
   mkdir -p $(dirname "$STORAGE_ENC_LOCAL") || error "unable to create local folder"
 }
 
 verify_local_file() {
   [ -r "$STORAGE_ENC_LOCAL" ] || error "unable to find encrypted local file"
-}
-
-verify_keys() {
-  gpg --list-secret-keys | grep "$RECIPIENT" > /dev/null 2>&1 || error "Missing keys for "$RECIPIENT". Import with gpg --import keys"
 }
 
 copy_remote_to_local() {
@@ -95,25 +92,33 @@ decipher_credentials_interactive() {
 # Main
 verify_deps
 verify_keys
-verify_local_folder 
-copy_remote_to_local
-verify_local_file
+
+[ $# -eq 0 ] && usage
 
 while getopts "gedsh" o; do
     case "$o" in
-        g)  generate_password
-            ;;
-        e)  edit_credentials
-            copy_local_to_remote
-            ;;
-        d)  decipher_credentials_all
-            ;;
-        s)  decipher_credentials_interactive
-            ;;
-        h)  usage
-            ;;
-        *)  usage
-            ;;
+        g) generate_password
+           ;;
+        e) verify_local_folder 
+           copy_remote_to_local
+           verify_local_file  
+           edit_credentials
+           copy_local_to_remote
+           ;;
+        d) verify_local_folder 
+           copy_remote_to_local
+           verify_local_file 
+           decipher_credentials_all
+           ;;
+        s) verify_local_folder 
+           copy_remote_to_local
+           verify_local_file 
+           decipher_credentials_interactive
+           ;;
+        h) usage
+           ;;
+        *) usage
+           ;;
     esac
     exit 0
 done
