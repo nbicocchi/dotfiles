@@ -10,5 +10,5 @@ source $XDG_CONFIG_HOME/fish/aliases.fish
 source $XDG_CONFIG_HOME/fish/developer.fish
 source $XDG_CONFIG_HOME/fish/prompt.fish
 source $XDG_CONFIG_HOME/fish/web.fish
-source $XDG_CONFIG_HOME/fish/starship.fish
+source $XDG_CONFIG_HOME/fish/init.fish
 source $XDG_CONFIG_HOME/fish/env.fish
