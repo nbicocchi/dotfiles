@@ -4,31 +4,25 @@ install_base_cli_pkgs() {
   pkgs="zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting zsh-completions starship 
     pacman-contrib base-devel gdb git gnupg openssh net-tools curl wget mc micro vsftpd 
     btop chezmoi man-db bat bat-extras dua-cli trash-cli lazygit ripgrep fzf
-    neovim neofetch xclip xsel fd eza shellcheck snapper zoxide exfatprogs ctags 
-    hunspell hunspell-it hunspell-en_us 
-    maven gradle jdk17-openjdk jdk21-openjdk jenv
-    pyenv"
+    neofetch xclip xsel eza shellcheck zoxide exfatprogs hunspell hunspell-it hunspell-en_us pyenv 
+    maven gradle jdk21-openjdk jenv"
   sudo pacman -S --noconfirm --needed $pkgs
   chsh -s /bin/zsh
 }
 
 install_base_gui_pkgs() {
-  pkgs="nerd-fonts font-manager firefox thunderbird lite-xl lollypop filezilla
-    helvum foliate handbrake xournalpp signal-desktop libreoffice-fresh discord gimp conky vlc 
-    cheese gthumb eog evince seahorse gvfs-goa gvfs-google 
-    gnome-autoar gnome-backgrounds gnome-bluetooth-3.0 gnome-browser-connector gnome-calculator 
+  pkgs="nerd-fonts bleachbit firefox thunderbird lollypop filezilla helvum foliate handbrake xournalpp 
+    gimp shortwave helvum vlc cheese gthumb eog evince seahorse gvfs-goa gvfs-google 
+    gnome-backgrounds gnome-bluetooth-3.0 gnome-browser-connector gnome-calculator gnome-music 
     gnome-characters gnome-clocks gnome-color-manager gnome-connections gnome-console
-    gnome-control-center gnome-desktop gnome-desktop-4 gnome-desktop-common gnome-disk-utility
-    gnome-keybindings gnome-keyring gnome-logs gnome-maps gnome-menus gnome-online-accounts
-    gnome-remote-desktop gnome-screenshot gnome-session gnome-settings-daemon gnome-shell
-    gnome-sound-recorder gnome-system-monitor gnome-text-editor gnome-tweaks gnome-user-docs
-    gnome-user-share gnome-video-effects gnome-weather fragments"
+    gnome-disk-utility gnome-remote-desktop gnome-screenshot gnome-sound-recorder gnome-text-editor 
+    gnome-tweaks gnome-weather fragments resources"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_aur_pkgs() {
-  pkgs="cava cavasik shortwave chatgpt-desktop-bin docker-desktop javafx-scenebuilder 
-  google-chrome visual-studio-code-bin popcorntime-bin menulibre adw-gtk3"
+  pkgs="cava cavasik shortwave docker-desktop lazydocker javafx-scenebuilder 
+  google-chrome visual-studio-code-bin wps-office popcorntime-bin adw-gtk3"
   yay -S --aur --noconfirm $pkgs
 }
 
