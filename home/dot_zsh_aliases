@@ -1,6 +1,6 @@
 alias vi="nvim"
-alias ls='ls --color=auto'
-alias lz='eza --icons'
+alias ls='eza --icons'
+alias ll='eza --long --icons'
 
 alias halt='sudo systemctl poweroff'
 alias reboot='sudo systemctl reboot'
@@ -13,3 +13,4 @@ alias pacrmapp="pacman -Qeq | fzf --reverse --multi --preview 'pacman -Qil {}' |
 alias update='yay -Syyu'
 alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
 
+alias server-here='python3 -m http.server 8888'
