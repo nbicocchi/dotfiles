@@ -1,9 +1,7 @@
-# Zsh plugins
+# Load plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-# Use fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
@@ -28,25 +26,19 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
 
-# # Completion Garuda
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit
+
 zstyle ':completion:*' rehash true                              # automatically find new executables in path
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
 zstyle ':completion:*' completer _expand_alias _complete _ignored _approximate
 zstyle ':completion:*' menu select
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
-
-# Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zcache
 
-# automatically load bash completion functions
-autoload -U +X bashcompinit && bashcompinit
-
-HISTFILE=~/.histfile
 HISTSIZE=50000
 SAVEHIST=50000
 
@@ -54,5 +46,3 @@ eval "$(zoxide init zsh)"
 eval "$(jenv init -)"
 eval "$(pyenv init -)"
 eval "$(starship init zsh)"
-
-/usr/bin/neofetch
