@@ -39,6 +39,7 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zcache
 
+HISTFILE=~/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
 
