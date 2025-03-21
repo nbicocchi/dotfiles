@@ -6,29 +6,26 @@ install_base_cli_pkgs() {
     btop chezmoi man-db bat bat-extras dua-cli trash-cli lazygit ripgrep fzf
     neovim neofetch xclip xsel fd eza shellcheck snapper zoxide exfatprogs ctags 
     hunspell hunspell-it hunspell-en_us 
-    maven gradle jdk17-openjdk jdk21-openjdk jenv
+    maven gradle jdk21-openjdk jenv
     pyenv"
   sudo pacman -S --noconfirm --needed $pkgs
   chsh -s /bin/zsh
 }
 
 install_base_gui_pkgs() {
-  pkgs="nerd-fonts font-manager firefox thunderbird lite-xl lollypop filezilla
-    helvum foliate handbrake xournalpp signal-desktop libreoffice-fresh discord gimp conky vlc 
+  pkgs="firefox thunderbird lollypop filezilla bleachbit
+    helvum foliate handbrake xournalpp gimp vlc 
     cheese gthumb eog evince seahorse gvfs-goa gvfs-google 
-    gnome-autoar gnome-backgrounds gnome-bluetooth-3.0 gnome-browser-connector gnome-calculator 
+    gnome-backgrounds gnome-browser-connector gnome-calculator 
     gnome-characters gnome-clocks gnome-color-manager gnome-connections gnome-console
-    gnome-control-center gnome-desktop gnome-desktop-4 gnome-desktop-common gnome-disk-utility
-    gnome-keybindings gnome-keyring gnome-logs gnome-maps gnome-menus gnome-online-accounts
-    gnome-remote-desktop gnome-screenshot gnome-session gnome-settings-daemon gnome-shell
-    gnome-sound-recorder gnome-system-monitor gnome-text-editor gnome-tweaks gnome-user-docs
-    gnome-user-share gnome-video-effects gnome-weather fragments"
+    gnome-logs gnome-remote-desktop gnome-screenshot gnome-sound-recorder gnome-text-editor 
+    gnome-tweaks gnome-user-docs gnome-weather fragments"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_aur_pkgs() {
-  pkgs="cava cavasik shortwave chatgpt-desktop-bin docker-desktop javafx-scenebuilder 
-  google-chrome visual-studio-code-bin popcorntime-bin menulibre adw-gtk3"
+  pkgs="cava cavasik shortwave docker-desktop javafx-scenebuilder 
+  google-chrome visual-studio-code-bin popcorntime-bin adw-gtk3"
   yay -S --aur --noconfirm $pkgs
 }
 
