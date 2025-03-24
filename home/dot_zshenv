@@ -11,17 +11,17 @@ export XDG_CONFIG_HOME=$HOME/.config
 export LANG=en_US.UTF-8
 
 # Terminal
-export TERMINAL=alacritty
-export TERM=alacritty
+export TERMINAL="alacritty"
+export TERM="alacritty"
 
 # GPG
 export GPG_TTY=$(tty)
 export GPG_AGENT_INFO=""
 
 # Editor
-export VISUAL=micro
-export EDITOR=micro
-export SUDO_EDITOR=micro
+export VISUAL="micro"
+export EDITOR="micro"
+export SUDO_EDITOR="micro"
 
 # Java fonts
-JAVA_FONTS=/usr/share/fonts/TTF
+export JAVA_FONTS="/usr/share/fonts/TTF"

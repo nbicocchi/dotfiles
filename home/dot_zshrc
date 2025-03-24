@@ -54,5 +54,3 @@ eval "$(zoxide init zsh)"
 eval "$(jenv init -)"
 eval "$(pyenv init -)"
 eval "$(starship init zsh)"
-
-/usr/bin/neofetch
