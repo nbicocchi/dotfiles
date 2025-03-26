@@ -1,6 +1,6 @@
 alias vi="nvim"
 alias ls='eza --icons'
-alias ll='eza --long --icons'
+alias ll='eza --all --long --icons'
 
 alias halt='sudo systemctl poweroff'
 alias reboot='sudo systemctl reboot'
@@ -14,3 +14,4 @@ alias update='yay -Syyu'
 alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
 
 alias server-here='python3 -m http.server 8888'
+alias defrag='sudo btrfs fi defrag -r /' 
