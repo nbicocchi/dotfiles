@@ -1,14 +1,6 @@
 # bin
 export PATH="$HOME/bin:$PATH"
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-# jenv
-export JENV_ROOT="$HOME/.jenv"
-export PATH="$JENV_ROOT/bin:$PATH"
-
 # XDG
 export XDG_CONFIG_HOME=$HOME/.config
 
