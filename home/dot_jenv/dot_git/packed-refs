@@ -1,0 +1,31 @@
+# pack-refs with: peeled fully-peeled sorted 
+a823349576dd3735d7ac58a185702aa3c91133d2 refs/remotes/origin/dev
+f581deaff16b1b9463f8a020d16ae558f7e7bfad refs/remotes/origin/feature-homebrew
+c4c340fb95c4db93a75d5ff7a4f699e29c5b3955 refs/remotes/origin/feature-refreshPlugins
+853a9fdd0789017315e6f18398083977ce0fe176 refs/remotes/origin/gh-pages
+00a860d1219a75494634faedb4afa7814de2cc69 refs/remotes/origin/homebrew
+5232b23438c8bfefc0f2051d711913b9297775f9 refs/remotes/origin/main
+b22ec24df5aa6c91fab5fa30ef62fd7c6c2ec715 refs/remotes/origin/master
+5686ee0e82e60270c738991276c7c4050006ad69 refs/remotes/origin/subversion_alias
+a6adb4c78d9dd2ca9cddc1d23e1fd02c1fadedff refs/tags/0.1.0
+c5e2fa836ffe24a26d7687e87a8a9c1bb9a4bf8d refs/tags/0.1.1
+a6e662af7349b8854e69f4aabd8e34200c3ba2f1 refs/tags/0.2.0-20130902
+48b41d81be51f67edec0eaa82d7c062df3d9f35c refs/tags/0.2.0-20130917
+91b925a66632850c1552dd12bf1c19b8d1d21cf8 refs/tags/0.2.0-20140322
+76268a9b90248f260037137ac9212db9ba1e72c6 refs/tags/0.2.0-201404260
+c162efda6d6b044f06d5cdd136d12cb3afcdb8c4 refs/tags/0.2.0-20140712
+6f0406ff64596cdf7290f8bedb129019e84f13a0 refs/tags/0.3.0-20141011
+7742afe3f6e0901477e317e447015125daba8b3d refs/tags/0.4.0
+fb17ee689ac58bd0bdf9104ab4ef38e6663966d6 refs/tags/0.4.1
+3fa34666e1e59d68bf37f767b9effbe1895f7334 refs/tags/0.4.2
+ac6e2521a7fccbcfc08a7ed114956d01c1666053 refs/tags/0.4.3
+a5307518e540b939dfd18055eb16950a89b856f9 refs/tags/0.4.4
+^bb718626e838ca6884cf716b673a7a469638930b
+8d229285583930f6bea52a6fd51655025c6128f4 refs/tags/0.5.0
+33e367b1c2ec40afd5956c1489340e73a56979b3 refs/tags/0.5.1
+af89d7800f93fd9d75935a39e5cabf6417e0daee refs/tags/0.5.2
+bca5d51c5dd15c1909d24a90f1236fcb3142405e refs/tags/0.5.3
+a6ad42b6a97e469b45fd4000971f1886d22ffc04 refs/tags/0.5.4
+a692899b2a8f9732fbbc0753b0f95f635b93fc71 refs/tags/0.5.5
+1518864ceb0ef95c609ba2dbde064e04b8e5f419 refs/tags/0.5.6
+1032e0036da40f720766e563d766272699a420f7 refs/tags/0.5.7

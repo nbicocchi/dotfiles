@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+#
+# Summary: Update pyenv, its plugins including the list of available versions
+#
+# Usage: pyenv update
+#
+
+set -e
+[ -n "$PYENV_DEBUG" ] && set -x
+
+if [ -z "$PYENV_ROOT" ]; then
+  PYENV_ROOT="${HOME}/.pyenv"
+fi
+
+REMOTE="${PYENV_REMOTE:-origin}"
+BRANCH="${PYENV_BRANCH}"
+
+BRANCH_CHOICE=
+ACCEPTED_BRANCHES="master main"
+
+verify_repo_remote() {
+  ( cd "$1" && git remote show -n "${REMOTE}" 1>/dev/null 2>&1 )
+}
+
+verify_repo_branch() {
+  local name="$(cd "$1" && git name-rev --refs='refs/heads/*' --name-only HEAD 2>/dev/null)"
+  if [ -z $BRANCH ]; then
+    [[ " $ACCEPTED_BRANCHES " =~ " ${name} " ]] && BRANCH_CHOICE=$name
+  else
+    [[ "${name}" == "${BRANCH}" ]] && BRANCH_CHOICE=$BRANCH
+  fi
+}
+
+verify_repo_clean() {
+  ! ( cd "$1" && git status --porcelain ) | grep -q -v '^[!?][!?]'
+}
+
+verify_repo() {
+  local stat=0
+  verify_repo_remote "$1" || {
+    stat="$?"
+    error "pyenv-update: $1 does not have ${REMOTE}."
+  }
+  verify_repo_branch "$1" || {
+    stat="$?"
+    if [ -z $BRANCH ]; then
+      error "pyenv-update: $1 is not on one of the branches: ${ACCEPTED_BRANCHES// /, }"
+    else
+      error "pyenv-update: $1 is not on ${BRANCH} branch."
+    fi
+  }
+  verify_repo_clean "$1" || {
+    stat="$?"
+    error "pyenv-update: $1 is not clean"
+  }
+  return "$stat"
+}
+
+update_repo() {
+  info "Updating $1..."
+  verify_repo "$1" &&
+  # pyenv-installer makes the repos shallow, so tags are not fetched by default
+  # Git 1.8.3 (RHEL/CentOS 7)'s `pull' doesn't support `--tags'
+  # so we have to fetch as a separate step.
+  (
+    cd "${repo}" && \
+    git fetch --tags "${REMOTE}" "${BRANCH_CHOICE}" && \
+    git merge --ff "${REMOTE}" "${BRANCH_CHOICE}"
+  )
+}
+
+info() {
+  { printf "\x1B[2;32m"
+    echo "$@"
+    printf "\x1B[0m"
+  }
+}
+
+error() {
+  { printf "\x1B[1;31m"
+    echo "$@"
+    printf "\x1B[0m"
+  } 1>&2
+}
+
+STATUS=0
+shopt -s nullglob
+for repo in "${PYENV_ROOT}" "${PYENV_ROOT}/plugins/"*; do
+  if [ -d "${repo}/.git" ]; then
+    update_repo "${repo}" || STATUS="$?"
+  fi
+done
+shopt -u nullglob
+
+pyenv rehash || STATUS="$?"
+
+exit "$STATUS"
