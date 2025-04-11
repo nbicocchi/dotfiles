@@ -1,4 +1,4 @@
-alias vi="nvim"
+alias rm='trash'
 alias ls='eza --icons'
 alias ll='eza --all --long --icons'
 
