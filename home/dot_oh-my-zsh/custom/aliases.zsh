@@ -10,8 +10,7 @@ alias pacrmorph='pacman -Qtdq | xargs -ro sudo pacman -Rs'
 alias pacrmaur="pacman -Qmq | fzf --reverse --multi --preview 'pacman -Qil {}' | xargs -ro sudo pacman -Rs"
 alias pacrmapp="pacman -Qeq | fzf --reverse --multi --preview 'pacman -Qil {}' | xargs -ro sudo pacman -Rs"
 
-alias update='yay -Syyu'
-alias drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
+alias update='yay -Syyu; sudo paccache -rk3; yay -Sc --aur --noconfirm'
 
 alias server-here='python3 -m http.server 8888'
 alias defrag='sudo btrfs fi defrag -r /' 
