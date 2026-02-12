@@ -1,83 +1,73 @@
-live_config_reload = true
+# ==============================
+# Alacritty Configuration (Noto)
+# ==============================
 
-[bell]
-animation = "EaseOutExpo"
-duration = 75
+# Window
+[window]
+padding = { x = 10, y = 10 }
+dynamic_padding = true
+decorations = "full"
+opacity = 0.95
+startup_mode = "Windowed"
+title = "Alacritty"
+dimensions = { columns = 160, lines = 40 }
 
-[colors]
-draw_bold_text_with_bright_colors = true
+[general]
+import = [
+    "~/.config/alacritty/themes/gruvbox_dark.toml"
+]
 
-[colors.bright]
-black = "0x7f7f7f"
-blue = "0x5c5cff"
-cyan = "0x00ffff"
-green = "0x00ff00"
-magenta = "0xff00ff"
-red = "0xff0000"
-white = "0xffffff"
-yellow = "0xffff00"
-
-[colors.normal]
-black = "0x000000"
-blue = "0x0000ee"
-cyan = "0x00cdcd"
-green = "0x00cd00"
-magenta = "0xcd00cd"
-red = "0xcd0000"
-white = "0xe5e5e5"
-yellow = "0xcdcd00"
-
-[colors.primary]
-background = "0x303035"
-foreground = "0xefefef"
-
-[cursor]
-style = "Block"
-unfocused_hollow = true
-
+# Font configuration
 [font]
 size = 12.0
 
-[font.bold]
-family = "FiraCode Nerd Font Mono"
-style = "Bold"
-
-[font.glyph_offset]
-x = 0
-y = 0
-
-[font.italic]
-family = "FiraCode Nerd Font Mono"
-style = "Italic"
-
 [font.normal]
-family = "FiraCode Nerd Font Mono"
+family = "Noto Sans Mono"
 style = "Regular"
 
+[font.bold]
+family = "Noto Sans Mono"
+style = "Bold"
+
+[font.italic]
+family = "Noto Sans Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "Noto Sans Mono"
+style = "Bold Italic"
+
+# Optional emoji fallback (important for emoji support)
 [font.offset]
 x = 0
 y = 0
 
-[[mouse.bindings]]
-action = "PasteSelection"
-mouse = "Middle"
+# Cursor
+[cursor]
+style = { shape = "Block", blinking = "On" }
+unfocused_hollow = true
 
+# Scrolling
 [scrolling]
-history = 2000
+history = 10000
+multiplier = 3
 
+# Selection
 [selection]
 save_to_clipboard = true
-semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
-[window]
-decorations = "full"
-dynamic_title = true
-startup_mode = "Windowed"
+# Keybindings
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
 
-[window.dimensions]
-columns = 120
-lines = 36
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
 
-[window.padding]
-x = 2
-y = 2
+[[keyboard.bindings]]
+key = "Return"
+mods = "Alt"
+action = "ToggleFullscreen"
