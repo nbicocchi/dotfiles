@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+THEMES_DIR="$HOME/.config/alacritty/themes"
+TARGET_LINK="$HOME/.config/alacritty/themes/selected"
+
+# Ensure live reload in alacritty.toml
+# live_config_reload: true
+# import: ["~/.config/alacritty/themes/selected"]
+
+# Load all themes
+mapfile -t THEMES < <(find "$THEMES_DIR" -maxdepth 1 -type f -name "*.toml" | sort)
+if [ ${#THEMES[@]} -eq 0 ]; then
+    echo "No themes found in $THEMES_DIR"
+    exit 1
+fi
+
+index=0
+
+apply_theme() {
+    ln -sf "${THEMES[$index]}" "$TARGET_LINK"
+    clear
+    echo "Alacritty Theme Switcher"
+    echo "------------------------"
+    echo "Current theme: $(basename "${THEMES[$index]}")"
+    echo
+    echo "Use ↑ / ↓ to switch, q to quit"
+}
+
+apply_theme
+
+# Read keys
+while true; do
+    IFS= read -rsn1 key
+    if [[ $key == $'\x1b' ]]; then
+        read -rsn2 key
+        case $key in
+            "[A") # Up
+                ((index--))
+                ((index < 0)) && index=$((${#THEMES[@]} - 1))
+                apply_theme
+                ;;
+            "[B") # Down
+                ((index++))
+                ((index >= ${#THEMES[@]})) && index=0
+                apply_theme
+                ;;
+        esac
+    elif [[ $key == "q" ]]; then
+        clear
+        exit 0
+    fi
+done
