@@ -2,7 +2,7 @@
 
 # Configuration
 RECIPIENT="nicola.bicocchi@gmail.com"
-STORAGE_ENC_REMOTE="/run/user/1000/gvfs/google-drive:host=unimore.it,user=nbicocchi/0AM-alrhdq_d4Uk9PVA/0B8-alrhdq_d4MDJuVWs4NlVGMnM/1WgF9Hw3hx50XzhORJhRZmETYV1067uPB"
+STORAGE_ENC_REMOTE="/home/nicola/GoogleDrive/Famiglia/mypasswd.gpg"
 STORAGE_ENC_LOCAL="$HOME"/.mypasswd/mypasswd.gpg
 PASSWORD_LENGTH=8
 TOCLIPBOARD="xclip -selection clipboard"
