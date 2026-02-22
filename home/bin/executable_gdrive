@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+REMOTE="gdrive:"
+MOUNTPOINT="$HOME/GoogleDrive"
+
+mount_drive() {
+    if [ ! -d "$MOUNTPOINT" ]; then
+        echo "Creating $MOUNTPOINT..."
+        mkdir -p "$MOUNTPOINT"
+    fi
+
+    if mountpoint -q "$MOUNTPOINT"; then
+        echo "Google Drive already mounted."
+        return
+    fi
+
+    if pgrep -f "rclone mount $REMOTE $MOUNTPOINT" > /dev/null; then
+        echo "rclone already running."
+        return
+    fi
+
+    echo "Mounting Google Drive..."
+    rclone mount "$REMOTE" "$MOUNTPOINT" \
+        --vfs-cache-mode writes \
+        --daemon
+}
+
+unmount_drive() {
+    echo "Unmounting Google Drive..."
+
+    # try clean unmount first
+    if mountpoint -q "$MOUNTPOINT"; then
+        fusermount -u "$MOUNTPOINT" 2>/dev/null
+    fi
+
+    # check if still mounted
+    if mountpoint -q "$MOUNTPOINT"; then
+        echo "Clean unmount failed. Killing rclone..."
+
+        # kill only the correct rclone mount
+        pkill -f "rclone mount $REMOTE $MOUNTPOINT"
+
+        # force unmount if needed
+        fusermount -uz "$MOUNTPOINT" 2>/dev/null
+    fi
+
+    echo "Done."
+}
+
+case "$1" in
+    --mount)
+        mount_drive
+        ;;
+    --unmount)
+        unmount_drive
+        ;;
+    *)
+        echo "Usage: $0 --mount | --unmount"
+        exit 1
+        ;;
+esac
