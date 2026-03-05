@@ -8,8 +8,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export LANG=en_US.UTF-8
 
 # Terminal
-export TERMINAL="alacritty"
-export TERM="alacritty"
+export TERMINAL="kitty"
+export TERM="kitty"
 
 # GPG
 export GPG_TTY=$(tty)
