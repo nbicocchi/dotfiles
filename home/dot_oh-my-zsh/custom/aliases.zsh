@@ -10,7 +10,10 @@ alias pacrmorph='pacman -Qtdq | xargs -ro sudo pacman -Rs'
 alias pacrmaur="pacman -Qmq | fzf --reverse --multi --preview 'pacman -Qil {}' | xargs -ro sudo pacman -Rs"
 alias pacrmapp="pacman -Qeq | fzf --reverse --multi --preview 'pacman -Qil {}' | xargs -ro sudo pacman -Rs"
 
-alias update='yay -Syyu; sudo paccache -rk3; yay -Sc --aur --noconfirm'
+alias mirrors='sudo reflector --country IT,FR,DE,CH --protocol https --latest 20 --sort rate --save /etc/pacman.d/mirrorlist'
+
+alias update='sudo pacman -Syyu'
+alias update-aur='yay -Syyu'
 
 alias server-here='python3 -m http.server 8888'
 alias defrag='sudo btrfs fi defrag -r /' 
