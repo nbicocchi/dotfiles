@@ -1,0 +1,81 @@
+#!/bin/bash
+set -e
+
+# =========================
+# CONFIGURAZIONE
+# =========================
+
+SHARE="//192.168.1.100/Media"
+MOUNT_POINT="$HOME/samba/Media"
+CREDENTIALS="$HOME/.smbcredentials"
+
+SMB_VERSION="3.0"
+
+FILE_MODE="0664"
+DIR_MODE="0775"
+
+# =========================
+# FUNZIONI
+# =========================
+
+mount_share() {
+  echo "▶ Mount in corso: $SHARE -> $MOUNT_POINT"
+
+  if mountpoint -q "$MOUNT_POINT"; then
+    echo "✔ Già montato"
+    exit 0
+  fi
+
+  mkdir -p "$MOUNT_POINT"
+
+  sudo mount -t cifs "$SHARE" "$MOUNT_POINT" \
+    -o credentials="$CREDENTIALS",vers="$SMB_VERSION",\
+uid=$(id -u),gid=$(id -g),\
+file_mode="$FILE_MODE",dir_mode="$DIR_MODE",iocharset=utf8
+
+  if mountpoint -q "$MOUNT_POINT"; then
+    echo "✔ Mount completato con successo"
+  else
+    echo "✖ Mount fallito"
+    exit 1
+  fi
+}
+
+unmount_share() {
+  echo "▶ Unmount in corso: $MOUNT_POINT"
+
+  if ! mountpoint -q "$MOUNT_POINT"; then
+    echo "✔ Non è montato"
+    exit 0
+  fi
+
+  sudo umount "$MOUNT_POINT"
+
+  if mountpoint -q "$MOUNT_POINT"; then
+    echo "✖ Unmount fallito"
+    exit 1
+  else
+    echo "✔ Unmount completato"
+  fi
+}
+
+usage() {
+  echo "Uso: $0 --mount | --unmount"
+  exit 1
+}
+
+# =========================
+# PARSING ARGOMENTI
+# =========================
+
+case "$1" in
+  --mount)
+    mount_share
+    ;;
+  --unmount)
+    unmount_share
+    ;;
+  *)
+    usage
+    ;;
+esac
