@@ -1,0 +1,17 @@
+#!/bin/bash
+
+TEXT="Hello! This is a test of the Piper text to speech system."
+VOICE_DIR="/usr/share/piper-voices"
+
+while true; do
+    voice=$(find "$VOICE_DIR" -name "*.onnx" | sort | fzf --prompt="Select voice (Ctrl+C to exit): ")
+
+    [[ -z "$voice" ]] && break
+
+    clear
+    echo "VOICE: $voice"
+
+    echo "$TEXT" | \
+        piper-tts --model "$voice" -f - | \
+        aplay
+done
