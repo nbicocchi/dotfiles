@@ -3,7 +3,12 @@
 SETUVAR --export PYENV_ROOT:/home/nicola/\x2epyenv
 SETUVAR __done_min_cmd_duration:10000
 SETUVAR __done_notification_urgency_level:low
-SETUVAR fish_user_paths:/home/nicola/\x2epyenv/bin
+SETUVAR _fisher_jorgebucaran_2F_hydro_files:\x7e/\x2econfig/fish/functions/fish_mode_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_prompt\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/hydro\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/hydro
+SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR _hydro_git_38537:main\u2022\x20
+SETUVAR _hydro_git_40565:\x1d
+SETUVAR fish_user_paths:/home/nicola/\x2elocal/bin\x1e/home/nicola/\x2epyenv/bin
 SETUVAR pure_begin_prompt_with_current_directory:true
 SETUVAR pure_check_for_new_release:false
 SETUVAR pure_color_at_sign:pure_color_mute
