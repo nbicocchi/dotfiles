@@ -5,9 +5,11 @@ set -e
 # CONFIGURAZIONE
 # =========================
 
-SHARE="//192.168.1.100/Media"
-MOUNT_POINT="$HOME/samba/Media"
-CREDENTIALS="$HOME/.smbcredentials"
+# Share must be provided as a command‑line argument
+# Base directory where shares will be mounted; each share will be mounted under a subdirectory named after the share.
+BASE_MOUNT_POINT="$HOME/Samba"
+# Optional default credentials file; if empty, script will prompt per share
+# CREDENTIALS not set; script will prompt per share
 
 SMB_VERSION="3.0"
 
@@ -19,48 +21,72 @@ DIR_MODE="0775"
 # =========================
 
 mount_share() {
-  echo "▶ Mount in corso: $SHARE -> $MOUNT_POINT"
+  local share="$1"
+  # Determine mount point based on share name
+  local share_name=$(basename "$share")
+  local mount_point="$BASE_MOUNT_POINT/$share_name"
+  echo "▶ Mount in corso: $share -> $mount_point"
 
-  if mountpoint -q "$MOUNT_POINT"; then
-    echo "✔ Già montato"
-    exit 0
+  # Determine credentials file: use provided CREDENTIALS or prompt the user
+  local cred_file=""
+  if [ -n "$CREDENTIALS" ]; then
+    cred_file="$CREDENTIALS"
+  else
+    # Prompt for username and password and create a temporary credentials file
+    prompt_credentials() {
+      read -p "Username for $share: " user
+      read -s -p "Password for $share: " pass
+      echo
+      cred_file="/tmp/smbcred_$(echo "$share" | tr -cd '[:alnum:]._-' | cut -c -20).txt"
+      printf "username=%s\npassword=%s\n" "$user" "$pass" > "$cred_file"
+      chmod 600 "$cred_file"
+    }
+    prompt_credentials
   fi
 
-  mkdir -p "$MOUNT_POINT"
+  if mountpoint -q "$mount_point"; then
+    echo "✔ Già montato $mount_point"
+    return 0
+  fi
 
-  sudo mount -t cifs "$SHARE" "$MOUNT_POINT" \
-    -o credentials="$CREDENTIALS",vers="$SMB_VERSION",\
-uid=$(id -u),gid=$(id -g),\
-file_mode="$FILE_MODE",dir_mode="$DIR_MODE",iocharset=utf8
+  mkdir -p "$mount_point"
 
-  if mountpoint -q "$MOUNT_POINT"; then
-    echo "✔ Mount completato con successo"
+  sudo mount -t cifs "$share" "$mount_point" \
+    -o credentials="$cred_file",vers="$SMB_VERSION",\
+    uid=$(id -u),gid=$(id -g),\
+    file_mode="$FILE_MODE",dir_mode="$DIR_MODE",iocharset=utf8
+
+  if mountpoint -q "$mount_point"; then
+    echo "✔ Mount completato con successo: $mount_point"
   else
-    echo "✖ Mount fallito"
-    exit 1
+    echo "✖ Mount fallito: $mount_point"
+    return 1
   fi
 }
 
 unmount_share() {
-  echo "▶ Unmount in corso: $MOUNT_POINT"
+  local share="$1"
+  local share_name=$(basename "$share")
+  local mount_point="$BASE_MOUNT_POINT/$share_name"
+  echo "▶ Unmount in corso: $mount_point"
 
-  if ! mountpoint -q "$MOUNT_POINT"; then
-    echo "✔ Non è montato"
-    exit 0
+  if ! mountpoint -q "$mount_point"; then
+    echo "✔ Non è montato $mount_point"
+    return 0
   fi
 
-  sudo umount "$MOUNT_POINT"
+  sudo umount "$mount_point"
 
-  if mountpoint -q "$MOUNT_POINT"; then
-    echo "✖ Unmount fallito"
-    exit 1
+  if mountpoint -q "$mount_point"; then
+    echo "✖ Unmount fallito: $mount_point"
+    return 1
   else
-    echo "✔ Unmount completato"
+    echo "✔ Unmount completato: $mount_point"
   fi
 }
 
 usage() {
-  echo "Uso: $0 --mount | --unmount"
+  echo "Uso: $0 --mount <share1> [share2 ...] | --unmount <share1> [share2 ...]"
   exit 1
 }
 
@@ -70,10 +96,26 @@ usage() {
 
 case "$1" in
   --mount)
-    mount_share
+    shift
+    if [ $# -eq 0 ]; then
+      echo "❌ Errore: è necessario specificare almeno una share da montare"
+      usage
+    else
+      for share in "$@"; do
+        mount_share "$share"
+      done
+    fi
     ;;
   --unmount)
-    unmount_share
+    shift
+    if [ $# -eq 0 ]; then
+      echo "❌ Errore: è necessario specificare almeno una share da smontare"
+      usage
+    else
+      for share in "$@"; do
+        unmount_share "$share"
+      done
+    fi
     ;;
   *)
     usage
