@@ -51,10 +51,7 @@ mount_share() {
 
   mkdir -p "$mount_point"
 
-  sudo mount -t cifs "$share" "$mount_point" \
-    -o credentials="$cred_file",vers="$SMB_VERSION",\
-    uid=$(id -u),gid=$(id -g),\
-    file_mode="$FILE_MODE",dir_mode="$DIR_MODE",iocharset=utf8
+  sudo mount -t cifs "$share" "$mount_point" -o credentials="$cred_file",vers=$SMB_VERSION,uid=$(id -u),gid=$(id -g),file_mode=$FILE_MODE,dir_mode=$DIR_MODE,iocharset=utf8
 
   if mountpoint -q "$mount_point"; then
     echo "✔ Mount completato con successo: $mount_point"
