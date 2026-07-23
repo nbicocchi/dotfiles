@@ -26,7 +26,6 @@ case "$answer" in
         echo "Starting print job..."
 
         for f in "${files[@]}"; do
-            echo "Printing: $f"
             lp "$f"
         done
 
