@@ -4,12 +4,12 @@
 install_base_cli_pkgs() {
   pkgs="pacman-contrib base-devel git gnupg openssh net-tools curl wget mc yazi micro
     btop chezmoi bat bat-extras dua-cli trash-cli lazygit ripgrep fzf
-    fd xclip xsel eza shellcheck zoxide exfatprogs hunspell hunspell-it hunspell-en_us pyenv"
+    fd xclip xsel eza shellcheck zoxide exfatprogs hunspell hunspell-it hunspell-en_us"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
 install_java_pkgs() {
-  pkgs="maven gradle jdk21-openjdk jenv"
+  pkgs="maven gradle jdk21-openjdk"
   sudo pacman -S --noconfirm --needed $pkgs
 }
 
