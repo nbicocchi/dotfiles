@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Find PDF files in the current directory
+files=( *.pdf )
+
+# No PDF files found
+if [ ! -e "${files[0]}" ]; then
+    echo "No PDF files found in the current directory."
+    exit 1
+fi
+
+count=${#files[@]}
+
+echo "Found $count PDF file(s):"
+echo
+
+for f in "${files[@]}"; do
+    echo "  - $f"
+done
+
+echo
+read -r -p "Do you want to print all these files? (y/N): " answer
+
+case "$answer" in
+    y|Y|yes|YES|Yes)
+        echo "Starting print job..."
+
+        for f in "${files[@]}"; do
+            echo "Printing: $f"
+            lp "$f"
+        done
+
+        echo "All files have been sent to the printer."
+        ;;
+    *)
+        echo "Operation cancelled."
+        exit 0
+        ;;
+esac
