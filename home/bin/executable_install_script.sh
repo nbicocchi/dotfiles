@@ -2,7 +2,7 @@
 #!/usr/bin/env sh
 
 install_base_cli_pkgs() {
-  pkgs="pacman-contrib base-devel git gnupg openssh net-tools curl wget mc micro
+  pkgs="pacman-contrib base-devel git gnupg openssh net-tools curl wget mc yazi micro
     btop chezmoi bat bat-extras dua-cli trash-cli lazygit ripgrep fzf
     fd xclip xsel eza shellcheck zoxide exfatprogs hunspell hunspell-it hunspell-en_us pyenv"
   sudo pacman -S --noconfirm --needed $pkgs
