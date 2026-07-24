@@ -5,11 +5,15 @@ function rm
 end
 
 function ls
-    eza --icons $argv
+    eza -a --color=always --group-directories-first --icons=auto $argv
 end
 
 function ll
-    eza -la --icons --git $argv
+    eza -la --color=always --group-directories-first --icons=auto --git $argv
+end
+
+function lt
+    eza -aT --color=always --group-directories-first --icons=auto $argv
 end
 
 
