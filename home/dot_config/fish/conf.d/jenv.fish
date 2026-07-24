@@ -1,3 +1,6 @@
-set PATH $HOME/.jenv/bin $PATH
-status --is-interactive; and jenv init - | source
+set -Ux JENV_ROOT $HOME/.jenv
+test -d $JENV_ROOT/bin; and fish_add_path $JENV_ROOT/bin
 
+if status is-interactive; and not set -q MC_SID
+    type -q jenv; and jenv init - | source
+end
