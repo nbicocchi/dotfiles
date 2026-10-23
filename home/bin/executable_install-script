@@ -1,0 +1,139 @@
+#!/usr/bin/env sh
+
+set -eu
+
+install_base_cli_pkgs() {
+  pkgs="pacman-contrib base-devel git gnupg openssh net-tools curl wget mc yazi micro
+    btop chezmoi bat bat-extras dua-cli trash-cli lazygit ripgrep fzf
+    fd xclip xsel eza shellcheck zoxide exfatprogs hunspell hunspell-it hunspell-en_us"
+
+  if [ -z "$pkgs" ]; then
+    printf 'No base CLI packages configured.\n'
+    return 0
+  fi
+
+  sudo pacman -S --noconfirm --needed $pkgs
+}
+
+install_java_pkgs() {
+  pkgs="maven gradle jdk21-openjdk"
+
+  if [ -z "$pkgs" ]; then
+    printf 'No Java packages configured.\n'
+    return 0
+  fi
+
+  sudo pacman -S --noconfirm --needed $pkgs
+}
+
+install_base_gui_pkgs() {
+  pkgs=""
+
+  if [ -z "$pkgs" ]; then
+    printf 'No base GUI packages configured.\n'
+    return 0
+  fi
+
+  sudo pacman -S --noconfirm --needed $pkgs
+}
+
+install_aur_pkgs() {
+  pkgs=""
+
+  if [ -z "$pkgs" ]; then
+    printf 'No AUR packages configured.\n'
+    return 0
+  fi
+
+  yay -S --aur --noconfirm --needed $pkgs
+}
+
+install_flatpak_pkgs() {
+  pkgs="
+    com.github.xournalpp.xournalpp
+    com.nuclearplayer.Nuclear
+    com.obsproject.Studio
+    com.valvesoftware.Steam
+    fr.handbrake.ghb
+    md.obsidian.Obsidian
+    org.gimp.GIMP
+    org.libreoffice.LibreOffice
+    org.mozilla.firefox
+    org.mozilla.thunderbird
+    org.rncbc.qsynth
+    org.torproject.torbrowser-launcher
+    org.upscayl.Upscayl
+  "
+
+  if [ -z "$pkgs" ]; then
+    printf 'No Flatpak packages configured.\n'
+    return 0
+  fi
+
+  sudo pacman -S --noconfirm --needed flatpak
+
+  sudo flatpak remote-add --system --if-not-exists \
+    flathub https://flathub.org/repo/flathub.flatpakrepo
+
+  for pkg in $pkgs; do
+    printf 'Installing %s...\n' "$pkg"
+    sudo flatpak install --system --noninteractive --assumeyes \
+      flathub "$pkg"
+  done
+}
+
+usage() {
+  cat <<EOF
+Usage: $0 [options]
+
+  --base-cli Install base CLI packages
+  --base-gui Install base GUI packages
+  --java     Install Java packages
+  --aur      Install AUR packages using yay
+  --flatpak  Install Flatpak applications
+  -h, --help Show this help message
+
+Multiple options can be combined.
+EOF
+}
+
+BASECLI=false
+BASEGUI=false
+JAVA=false
+AUR=false
+FLATPAK=false
+
+if [ "$#" -eq 0 ]; then
+  usage
+  exit 1
+fi
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --base-cli) BASECLI=true ;;
+    --base-gui) BASEGUI=true ;;
+    --java) JAVA=true ;;
+    --aur) AUR=true ;;
+    --flatpak) FLATPAK=true ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      printf 'Unknown option: %s\n' "$1" >&2
+      usage >&2
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+sudo pacman -Syu --noconfirm
+
+"$BASECLI" && install_base_cli_pkgs
+"$BASEGUI" && install_base_gui_pkgs
+"$JAVA" && install_java_pkgs
+"$AUR" && install_aur_pkgs
+"$FLATPAK" && install_flatpak_pkgs
+
+printf 'All operations completed.\n'
